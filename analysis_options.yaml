@@ -22,7 +22,7 @@ linter:
     # ------------------------------------- #
 
     # Make constructors the first thing in every class
-    sort_constructors_first: true
+    sort_constructors_first: false
 
     # The new tabs vs. spaces. Choose wisely
     prefer_single_quotes: true
@@ -31,4 +31,4 @@ linter:
     # public_member_api_docs: true
     
     # Blindly follow the Flutter code style, which prefers types everywhere
-    always_specify_types: true
+    # always_specify_types: true

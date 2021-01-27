@@ -1,6 +1,4 @@
 import 'package:app_rent_bike/views/init_page.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -10,21 +8,12 @@ import 'package:redux/redux.dart';
 import 'Features/DataPrueba/Application/get_data.dart';
 //import 'Features/DataPrueba/Infrastructure/cache_repository.dart';
 import 'Features/DataPrueba/Infrastructure/cache_repository.dart';
-import 'Features/DataPrueba/Infrastructure/firestore_repository.dart';
 import 'Redux/middleware/app_middleware.dart';
 import 'Redux/reducers/app_state_reducer.dart';
 import 'Redux/state/app_state.dart';
-import 'injection.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  //final String host = defaultTargetPlatform == TargetPlatform.android ? '10.0.2.2:8086' : 'localhost:8086';
-  //FirebaseFirestore.instance.settings = Settings(host: host, sslEnabled: false);
-  final FirebaseFirestore firestore = FirebaseFirestore.instance;
-
-  final dataPruebaRepository = FirestoreRepository(firestore);
-  // CacheRepository();
+  final dataPruebaRepository = CacheRepository();
   //setupLocator(firestore);
   // configureInjection(Env.dev);
   runApp(MyApp(
@@ -53,7 +42,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           // Define the default brightness and colors.
           brightness: Brightness.light,
-          primaryColor: const Color(0xff5068a9),
+          primaryColor: Colors.red,
           accentColor: const Color(0xff86A6DF),
           focusColor: const Color(0xff324e7b),
           canvasColor: const Color(0xfffff5f5),

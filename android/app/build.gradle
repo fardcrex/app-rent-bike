@@ -22,6 +22,7 @@ if (flutterVersionName == null) {
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
@@ -41,6 +42,7 @@ android {
         applicationId "com.ibernel.app_rent_bike"
         minSdkVersion 16
         targetSdkVersion 29
+        multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -52,6 +54,23 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    flavorDimensions "flavor-type"
+
+    productFlavors{
+        dev {
+            dimension "flavor-type"
+            applicationId "com.ibernel.app_rent_bike.dev"
+            versionCode flutterVersionCode.toInteger()
+            versionName flutterVersionName
+        }
+        prod {
+            dimension "flavor-type"
+            applicationId "com.ibernel.app_rent_bike"
+            versionCode flutterVersionCode.toInteger()
+            versionName flutterVersionName
+        }
+    }
 }
 
 flutter {
@@ -60,4 +79,6 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation platform('com.google.firebase:firebase-bom:26.3.0')
 }
