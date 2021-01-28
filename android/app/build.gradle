@@ -58,18 +58,27 @@ android {
     flavorDimensions "flavor-type"
 
     productFlavors{
-        dev {
-            dimension "flavor-type"
-            applicationId "com.ibernel.app_rent_bike.dev"
-            versionCode flutterVersionCode.toInteger()
-            versionName flutterVersionName
-        }
         prod {
             dimension "flavor-type"
             applicationId "com.ibernel.app_rent_bike"
             versionCode flutterVersionCode.toInteger()
             versionName flutterVersionName
+            manifestPlaceholders = [appName: "Flavor"]
         }
+        dev {
+            dimension "flavor-type"
+            applicationIdSuffix ".dev"
+            versionCode flutterVersionCode.toInteger()
+            versionNameSuffix "-dev"
+            manifestPlaceholders = [appName: "Flavor DEV"]
+        }     
+        tst {
+            dimension "flavor-type"
+            applicationIdSuffix ".tst"
+            versionCode flutterVersionCode.toInteger()
+            versionNameSuffix "-tst"
+            manifestPlaceholders = [appName: "Flavor TST"]
+        }  
     }
 }
 
