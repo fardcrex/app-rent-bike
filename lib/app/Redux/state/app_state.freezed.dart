@@ -14,11 +14,20 @@ class _$AppStateTearOff {
   const _$AppStateTearOff();
 
 // ignore: unused_element
-  _AppState call({AppMenu appMenu, bool isLoading, List<String> dataPrueba}) {
+  _AppState call(
+      {AppMenu appMenu,
+      bool isLoading,
+      bool isTimeLocal,
+      List<HorarioDto> horarios,
+      String uidUser,
+      DateTime dateTimeNow}) {
     return _AppState(
       appMenu: appMenu,
       isLoading: isLoading,
-      dataPrueba: dataPrueba,
+      isTimeLocal: isTimeLocal,
+      horarios: horarios,
+      uidUser: uidUser,
+      dateTimeNow: dateTimeNow,
     );
   }
 }
@@ -31,7 +40,10 @@ const $AppState = _$AppStateTearOff();
 mixin _$AppState {
   AppMenu get appMenu;
   bool get isLoading;
-  List<String> get dataPrueba;
+  bool get isTimeLocal;
+  List<HorarioDto> get horarios;
+  String get uidUser;
+  DateTime get dateTimeNow;
 
   @JsonKey(ignore: true)
   $AppStateCopyWith<AppState> get copyWith;
@@ -41,7 +53,13 @@ mixin _$AppState {
 abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res>;
-  $Res call({AppMenu appMenu, bool isLoading, List<String> dataPrueba});
+  $Res call(
+      {AppMenu appMenu,
+      bool isLoading,
+      bool isTimeLocal,
+      List<HorarioDto> horarios,
+      String uidUser,
+      DateTime dateTimeNow});
 
   $AppMenuCopyWith<$Res> get appMenu;
 }
@@ -58,14 +76,21 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
   $Res call({
     Object appMenu = freezed,
     Object isLoading = freezed,
-    Object dataPrueba = freezed,
+    Object isTimeLocal = freezed,
+    Object horarios = freezed,
+    Object uidUser = freezed,
+    Object dateTimeNow = freezed,
   }) {
     return _then(_value.copyWith(
       appMenu: appMenu == freezed ? _value.appMenu : appMenu as AppMenu,
       isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
-      dataPrueba: dataPrueba == freezed
-          ? _value.dataPrueba
-          : dataPrueba as List<String>,
+      isTimeLocal:
+          isTimeLocal == freezed ? _value.isTimeLocal : isTimeLocal as bool,
+      horarios:
+          horarios == freezed ? _value.horarios : horarios as List<HorarioDto>,
+      uidUser: uidUser == freezed ? _value.uidUser : uidUser as String,
+      dateTimeNow:
+          dateTimeNow == freezed ? _value.dateTimeNow : dateTimeNow as DateTime,
     ));
   }
 
@@ -85,7 +110,13 @@ abstract class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
   factory _$AppStateCopyWith(_AppState value, $Res Function(_AppState) then) =
       __$AppStateCopyWithImpl<$Res>;
   @override
-  $Res call({AppMenu appMenu, bool isLoading, List<String> dataPrueba});
+  $Res call(
+      {AppMenu appMenu,
+      bool isLoading,
+      bool isTimeLocal,
+      List<HorarioDto> horarios,
+      String uidUser,
+      DateTime dateTimeNow});
 
   @override
   $AppMenuCopyWith<$Res> get appMenu;
@@ -104,32 +135,51 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
   $Res call({
     Object appMenu = freezed,
     Object isLoading = freezed,
-    Object dataPrueba = freezed,
+    Object isTimeLocal = freezed,
+    Object horarios = freezed,
+    Object uidUser = freezed,
+    Object dateTimeNow = freezed,
   }) {
     return _then(_AppState(
       appMenu: appMenu == freezed ? _value.appMenu : appMenu as AppMenu,
       isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
-      dataPrueba: dataPrueba == freezed
-          ? _value.dataPrueba
-          : dataPrueba as List<String>,
+      isTimeLocal:
+          isTimeLocal == freezed ? _value.isTimeLocal : isTimeLocal as bool,
+      horarios:
+          horarios == freezed ? _value.horarios : horarios as List<HorarioDto>,
+      uidUser: uidUser == freezed ? _value.uidUser : uidUser as String,
+      dateTimeNow:
+          dateTimeNow == freezed ? _value.dateTimeNow : dateTimeNow as DateTime,
     ));
   }
 }
 
 /// @nodoc
 class _$_AppState implements _AppState {
-  const _$_AppState({this.appMenu, this.isLoading, this.dataPrueba});
+  const _$_AppState(
+      {this.appMenu,
+      this.isLoading,
+      this.isTimeLocal,
+      this.horarios,
+      this.uidUser,
+      this.dateTimeNow});
 
   @override
   final AppMenu appMenu;
   @override
   final bool isLoading;
   @override
-  final List<String> dataPrueba;
+  final bool isTimeLocal;
+  @override
+  final List<HorarioDto> horarios;
+  @override
+  final String uidUser;
+  @override
+  final DateTime dateTimeNow;
 
   @override
   String toString() {
-    return 'AppState(appMenu: $appMenu, isLoading: $isLoading, dataPrueba: $dataPrueba)';
+    return 'AppState(appMenu: $appMenu, isLoading: $isLoading, isTimeLocal: $isTimeLocal, horarios: $horarios, uidUser: $uidUser, dateTimeNow: $dateTimeNow)';
   }
 
   @override
@@ -142,9 +192,18 @@ class _$_AppState implements _AppState {
             (identical(other.isLoading, isLoading) ||
                 const DeepCollectionEquality()
                     .equals(other.isLoading, isLoading)) &&
-            (identical(other.dataPrueba, dataPrueba) ||
+            (identical(other.isTimeLocal, isTimeLocal) ||
                 const DeepCollectionEquality()
-                    .equals(other.dataPrueba, dataPrueba)));
+                    .equals(other.isTimeLocal, isTimeLocal)) &&
+            (identical(other.horarios, horarios) ||
+                const DeepCollectionEquality()
+                    .equals(other.horarios, horarios)) &&
+            (identical(other.uidUser, uidUser) ||
+                const DeepCollectionEquality()
+                    .equals(other.uidUser, uidUser)) &&
+            (identical(other.dateTimeNow, dateTimeNow) ||
+                const DeepCollectionEquality()
+                    .equals(other.dateTimeNow, dateTimeNow)));
   }
 
   @override
@@ -152,7 +211,10 @@ class _$_AppState implements _AppState {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(appMenu) ^
       const DeepCollectionEquality().hash(isLoading) ^
-      const DeepCollectionEquality().hash(dataPrueba);
+      const DeepCollectionEquality().hash(isTimeLocal) ^
+      const DeepCollectionEquality().hash(horarios) ^
+      const DeepCollectionEquality().hash(uidUser) ^
+      const DeepCollectionEquality().hash(dateTimeNow);
 
   @JsonKey(ignore: true)
   @override
@@ -162,14 +224,25 @@ class _$_AppState implements _AppState {
 
 abstract class _AppState implements AppState {
   const factory _AppState(
-      {AppMenu appMenu, bool isLoading, List<String> dataPrueba}) = _$_AppState;
+      {AppMenu appMenu,
+      bool isLoading,
+      bool isTimeLocal,
+      List<HorarioDto> horarios,
+      String uidUser,
+      DateTime dateTimeNow}) = _$_AppState;
 
   @override
   AppMenu get appMenu;
   @override
   bool get isLoading;
   @override
-  List<String> get dataPrueba;
+  bool get isTimeLocal;
+  @override
+  List<HorarioDto> get horarios;
+  @override
+  String get uidUser;
+  @override
+  DateTime get dateTimeNow;
   @override
   @JsonKey(ignore: true)
   _$AppStateCopyWith<_AppState> get copyWith;

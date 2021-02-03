@@ -1,12 +1,16 @@
+import 'package:app_rent_bike/app/Redux/actions/horarios_action.dart';
 import 'package:app_rent_bike/app/Redux/actions/state_app_actions.dart';
 import 'package:app_rent_bike/app/Redux/state/app_state.dart';
+import 'package:app_rent_bike/src/Horarios/Domain/horarioDto/horario_dto.dart';
 import 'package:redux/redux.dart';
 
 AppState appReducer(AppState state, dynamic action) {
   return AppState(
       isLoading: _changeLoadingReducer(state.isLoading, action),
       appMenu: menusReducer(state.appMenu, action),
-      dataPrueba: _dataPruebaReducer(state.dataPrueba, action));
+      uidUser: state.uidUser,
+      isTimeLocal: timeZoneReducer(state.isTimeLocal, action),
+      horarios: _dataPruebaReducer(state.horarios, action));
 }
 
 final Reducer<AppMenu> menusReducer = combineReducers<AppMenu>([
@@ -30,10 +34,18 @@ bool _changeToNotLoading(bool state, ChangeToNotLoadingAction action) {
   return false;
 }
 
-final Reducer<List<String>> _dataPruebaReducer = combineReducers<List<String>>([
-  TypedReducer<List<String>, ShowDataPruebaAction>(_showDataPruebaReducer),
+final Reducer<List<HorarioDto>> _dataPruebaReducer = combineReducers<List<HorarioDto>>([
+  TypedReducer<List<HorarioDto>, SetHorariossAction>(_showDataPruebaReducer),
 ]);
 
-List<String> _showDataPruebaReducer(List<String> state, ShowDataPruebaAction action) {
-  return List.unmodifiable(action.dataList);
+List<HorarioDto> _showDataPruebaReducer(List<HorarioDto> state, SetHorariossAction action) {
+  return List.unmodifiable(action.listHorarios);
+}
+
+final Reducer<bool> timeZoneReducer = combineReducers<bool>([
+  TypedReducer<bool, ChangeTimeZone>(_changeTimeZone),
+]);
+
+bool _changeTimeZone(bool state, ChangeTimeZone action) {
+  return !state;
 }

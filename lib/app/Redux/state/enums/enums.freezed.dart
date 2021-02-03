@@ -7,7 +7,6 @@ part of 'enums.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// ignore: unused_element
 T _$identity<T>(T value) => value;
 
 /// @nodoc
@@ -66,7 +65,8 @@ mixin _$AppMenu {
 
 /// @nodoc
 abstract class $AppMenuCopyWith<$Res> {
-  factory $AppMenuCopyWith(AppMenu value, $Res Function(AppMenu) then) = _$AppMenuCopyWithImpl<$Res>;
+  factory $AppMenuCopyWith(AppMenu value, $Res Function(AppMenu) then) =
+      _$AppMenuCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -80,12 +80,15 @@ class _$AppMenuCopyWithImpl<$Res> implements $AppMenuCopyWith<$Res> {
 
 /// @nodoc
 abstract class $InfoCopyWith<$Res> {
-  factory $InfoCopyWith(Info value, $Res Function(Info) then) = _$InfoCopyWithImpl<$Res>;
+  factory $InfoCopyWith(Info value, $Res Function(Info) then) =
+      _$InfoCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InfoCopyWithImpl<$Res> extends _$AppMenuCopyWithImpl<$Res> implements $InfoCopyWith<$Res> {
-  _$InfoCopyWithImpl(Info _value, $Res Function(Info) _then) : super(_value, (v) => _then(v as Info));
+class _$InfoCopyWithImpl<$Res> extends _$AppMenuCopyWithImpl<$Res>
+    implements $InfoCopyWith<$Res> {
+  _$InfoCopyWithImpl(Info _value, $Res Function(Info) _then)
+      : super(_value, (v) => _then(v as Info));
 
   @override
   Info get _value => super._value as Info;
@@ -171,12 +174,15 @@ abstract class Info implements AppMenu {
 
 /// @nodoc
 abstract class $HorariosCopyWith<$Res> {
-  factory $HorariosCopyWith(Horarios value, $Res Function(Horarios) then) = _$HorariosCopyWithImpl<$Res>;
+  factory $HorariosCopyWith(Horarios value, $Res Function(Horarios) then) =
+      _$HorariosCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$HorariosCopyWithImpl<$Res> extends _$AppMenuCopyWithImpl<$Res> implements $HorariosCopyWith<$Res> {
-  _$HorariosCopyWithImpl(Horarios _value, $Res Function(Horarios) _then) : super(_value, (v) => _then(v as Horarios));
+class _$HorariosCopyWithImpl<$Res> extends _$AppMenuCopyWithImpl<$Res>
+    implements $HorariosCopyWith<$Res> {
+  _$HorariosCopyWithImpl(Horarios _value, $Res Function(Horarios) _then)
+      : super(_value, (v) => _then(v as Horarios));
 
   @override
   Horarios get _value => super._value as Horarios;
@@ -262,12 +268,15 @@ abstract class Horarios implements AppMenu {
 
 /// @nodoc
 abstract class $RentasCopyWith<$Res> {
-  factory $RentasCopyWith(Rentas value, $Res Function(Rentas) then) = _$RentasCopyWithImpl<$Res>;
+  factory $RentasCopyWith(Rentas value, $Res Function(Rentas) then) =
+      _$RentasCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$RentasCopyWithImpl<$Res> extends _$AppMenuCopyWithImpl<$Res> implements $RentasCopyWith<$Res> {
-  _$RentasCopyWithImpl(Rentas _value, $Res Function(Rentas) _then) : super(_value, (v) => _then(v as Rentas));
+class _$RentasCopyWithImpl<$Res> extends _$AppMenuCopyWithImpl<$Res>
+    implements $RentasCopyWith<$Res> {
+  _$RentasCopyWithImpl(Rentas _value, $Res Function(Rentas) _then)
+      : super(_value, (v) => _then(v as Rentas));
 
   @override
   Rentas get _value => super._value as Rentas;

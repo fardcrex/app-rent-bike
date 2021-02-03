@@ -11,8 +11,4 @@ class ChangeToNotLoadingAction {}
 
 class LoadDataAction {}
 
-class ShowDataPruebaAction {
-  final List<String> dataList;
-
-  ShowDataPruebaAction(this.dataList);
-}
+class ChangeTimeZone {}

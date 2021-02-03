@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
-part of 'tab_selector.dart';
+part of 'switch_time_zone.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,9 +14,9 @@ class _$_ViewModelTearOff {
   const _$_ViewModelTearOff();
 
 // ignore: unused_element
-  __ViewModel call({AppMenu appMenu, dynamic Function(AppMenu) onTabSelected}) {
+  __ViewModel call({bool isTimeLocal, dynamic Function() onTabSelected}) {
     return __ViewModel(
-      appMenu: appMenu,
+      isTimeLocal: isTimeLocal,
       onTabSelected: onTabSelected,
     );
   }
@@ -28,8 +28,8 @@ const _$ViewModel = _$_ViewModelTearOff();
 
 /// @nodoc
 mixin _$_ViewModel {
-  AppMenu get appMenu;
-  dynamic Function(AppMenu) get onTabSelected;
+  bool get isTimeLocal;
+  dynamic Function() get onTabSelected;
 
   @JsonKey(ignore: true)
   _$ViewModelCopyWith<_ViewModel> get copyWith;
@@ -40,9 +40,7 @@ abstract class _$ViewModelCopyWith<$Res> {
   factory _$ViewModelCopyWith(
           _ViewModel value, $Res Function(_ViewModel) then) =
       __$ViewModelCopyWithImpl<$Res>;
-  $Res call({AppMenu appMenu, dynamic Function(AppMenu) onTabSelected});
-
-  $AppMenuCopyWith<$Res> get appMenu;
+  $Res call({bool isTimeLocal, dynamic Function() onTabSelected});
 }
 
 /// @nodoc
@@ -55,25 +53,16 @@ class __$ViewModelCopyWithImpl<$Res> implements _$ViewModelCopyWith<$Res> {
 
   @override
   $Res call({
-    Object appMenu = freezed,
+    Object isTimeLocal = freezed,
     Object onTabSelected = freezed,
   }) {
     return _then(_value.copyWith(
-      appMenu: appMenu == freezed ? _value.appMenu : appMenu as AppMenu,
+      isTimeLocal:
+          isTimeLocal == freezed ? _value.isTimeLocal : isTimeLocal as bool,
       onTabSelected: onTabSelected == freezed
           ? _value.onTabSelected
-          : onTabSelected as dynamic Function(AppMenu),
+          : onTabSelected as dynamic Function(),
     ));
-  }
-
-  @override
-  $AppMenuCopyWith<$Res> get appMenu {
-    if (_value.appMenu == null) {
-      return null;
-    }
-    return $AppMenuCopyWith<$Res>(_value.appMenu, (value) {
-      return _then(_value.copyWith(appMenu: value));
-    });
   }
 }
 
@@ -83,10 +72,7 @@ abstract class _$_ViewModelCopyWith<$Res> implements _$ViewModelCopyWith<$Res> {
           __ViewModel value, $Res Function(__ViewModel) then) =
       __$_ViewModelCopyWithImpl<$Res>;
   @override
-  $Res call({AppMenu appMenu, dynamic Function(AppMenu) onTabSelected});
-
-  @override
-  $AppMenuCopyWith<$Res> get appMenu;
+  $Res call({bool isTimeLocal, dynamic Function() onTabSelected});
 }
 
 /// @nodoc
@@ -101,30 +87,31 @@ class __$_ViewModelCopyWithImpl<$Res> extends __$ViewModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object appMenu = freezed,
+    Object isTimeLocal = freezed,
     Object onTabSelected = freezed,
   }) {
     return _then(__ViewModel(
-      appMenu: appMenu == freezed ? _value.appMenu : appMenu as AppMenu,
+      isTimeLocal:
+          isTimeLocal == freezed ? _value.isTimeLocal : isTimeLocal as bool,
       onTabSelected: onTabSelected == freezed
           ? _value.onTabSelected
-          : onTabSelected as dynamic Function(AppMenu),
+          : onTabSelected as dynamic Function(),
     ));
   }
 }
 
 /// @nodoc
 class _$__ViewModel with DiagnosticableTreeMixin implements __ViewModel {
-  const _$__ViewModel({this.appMenu, this.onTabSelected});
+  const _$__ViewModel({this.isTimeLocal, this.onTabSelected});
 
   @override
-  final AppMenu appMenu;
+  final bool isTimeLocal;
   @override
-  final dynamic Function(AppMenu) onTabSelected;
+  final dynamic Function() onTabSelected;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return '_ViewModel(appMenu: $appMenu, onTabSelected: $onTabSelected)';
+    return '_ViewModel(isTimeLocal: $isTimeLocal, onTabSelected: $onTabSelected)';
   }
 
   @override
@@ -132,7 +119,7 @@ class _$__ViewModel with DiagnosticableTreeMixin implements __ViewModel {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', '_ViewModel'))
-      ..add(DiagnosticsProperty('appMenu', appMenu))
+      ..add(DiagnosticsProperty('isTimeLocal', isTimeLocal))
       ..add(DiagnosticsProperty('onTabSelected', onTabSelected));
   }
 
@@ -140,9 +127,9 @@ class _$__ViewModel with DiagnosticableTreeMixin implements __ViewModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is __ViewModel &&
-            (identical(other.appMenu, appMenu) ||
+            (identical(other.isTimeLocal, isTimeLocal) ||
                 const DeepCollectionEquality()
-                    .equals(other.appMenu, appMenu)) &&
+                    .equals(other.isTimeLocal, isTimeLocal)) &&
             (identical(other.onTabSelected, onTabSelected) ||
                 const DeepCollectionEquality()
                     .equals(other.onTabSelected, onTabSelected)));
@@ -151,7 +138,7 @@ class _$__ViewModel with DiagnosticableTreeMixin implements __ViewModel {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(appMenu) ^
+      const DeepCollectionEquality().hash(isTimeLocal) ^
       const DeepCollectionEquality().hash(onTabSelected);
 
   @JsonKey(ignore: true)
@@ -162,13 +149,12 @@ class _$__ViewModel with DiagnosticableTreeMixin implements __ViewModel {
 
 abstract class __ViewModel implements _ViewModel {
   const factory __ViewModel(
-      {AppMenu appMenu,
-      dynamic Function(AppMenu) onTabSelected}) = _$__ViewModel;
+      {bool isTimeLocal, dynamic Function() onTabSelected}) = _$__ViewModel;
 
   @override
-  AppMenu get appMenu;
+  bool get isTimeLocal;
   @override
-  dynamic Function(AppMenu) get onTabSelected;
+  dynamic Function() get onTabSelected;
   @override
   @JsonKey(ignore: true)
   _$_ViewModelCopyWith<__ViewModel> get copyWith;

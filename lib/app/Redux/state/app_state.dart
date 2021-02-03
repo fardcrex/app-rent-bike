@@ -1,3 +1,4 @@
+import 'package:app_rent_bike/src/Horarios/Domain/horarioDto/horario_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'enums/enums.dart';
@@ -9,12 +10,30 @@ abstract class AppState with _$AppState {
   const factory AppState({
     final AppMenu appMenu,
     final bool isLoading,
-    final List<String> dataPrueba,
+    final bool isTimeLocal,
+    final List<HorarioDto> horarios,
+    final String uidUser,
+    final DateTime dateTimeNow,
   }) = _AppState;
 
-  factory AppState.initial() => const AppState(
-        appMenu: AppMenu.horarios(),
-        isLoading: true,
-        dataPrueba: [],
-      );
+  factory AppState.initial() => AppState(
+      appMenu: const AppMenu.horarios(),
+      isLoading: true,
+      horarios: [],
+      dateTimeNow: DateTime.now(),
+      uidUser: '55',
+      isTimeLocal: true);
+}
+
+String getDia(int dia) {
+  final Map<int, String> dias = {
+    1: 'Lunes',
+    2: 'Martes',
+    3: 'Miércoles',
+    4: 'Jueves',
+    5: 'Viernes',
+    6: 'Sábado',
+    7: 'Domingo'
+  };
+  return dias[dia] ?? 'error dìa';
 }

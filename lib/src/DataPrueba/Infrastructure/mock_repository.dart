@@ -9,7 +9,7 @@ class MockDataRepository implements InterfaceDataRepository {
   Future<List<String>> getDataPrueba() async {
     try {
       await Future.delayed(const Duration());
-      print(data);
+
       data.add('Jair');
       return data;
     } catch (e) {

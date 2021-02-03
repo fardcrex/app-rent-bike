@@ -14,11 +14,10 @@ class _$_ViewModelTearOff {
   const _$_ViewModelTearOff();
 
 // ignore: unused_element
-  __ViewModel call({AppMenu appMenu, bool isLoading, List<String> dataPrueba}) {
+  __ViewModel call({AppMenu appMenu, bool isTimeLocal}) {
     return __ViewModel(
       appMenu: appMenu,
-      isLoading: isLoading,
-      dataPrueba: dataPrueba,
+      isTimeLocal: isTimeLocal,
     );
   }
 }
@@ -30,8 +29,7 @@ const _$ViewModel = _$_ViewModelTearOff();
 /// @nodoc
 mixin _$_ViewModel {
   AppMenu get appMenu;
-  bool get isLoading;
-  List<String> get dataPrueba;
+  bool get isTimeLocal;
 
   @JsonKey(ignore: true)
   _$ViewModelCopyWith<_ViewModel> get copyWith;
@@ -42,7 +40,7 @@ abstract class _$ViewModelCopyWith<$Res> {
   factory _$ViewModelCopyWith(
           _ViewModel value, $Res Function(_ViewModel) then) =
       __$ViewModelCopyWithImpl<$Res>;
-  $Res call({AppMenu appMenu, bool isLoading, List<String> dataPrueba});
+  $Res call({AppMenu appMenu, bool isTimeLocal});
 
   $AppMenuCopyWith<$Res> get appMenu;
 }
@@ -58,15 +56,12 @@ class __$ViewModelCopyWithImpl<$Res> implements _$ViewModelCopyWith<$Res> {
   @override
   $Res call({
     Object appMenu = freezed,
-    Object isLoading = freezed,
-    Object dataPrueba = freezed,
+    Object isTimeLocal = freezed,
   }) {
     return _then(_value.copyWith(
       appMenu: appMenu == freezed ? _value.appMenu : appMenu as AppMenu,
-      isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
-      dataPrueba: dataPrueba == freezed
-          ? _value.dataPrueba
-          : dataPrueba as List<String>,
+      isTimeLocal:
+          isTimeLocal == freezed ? _value.isTimeLocal : isTimeLocal as bool,
     ));
   }
 
@@ -87,7 +82,7 @@ abstract class _$_ViewModelCopyWith<$Res> implements _$ViewModelCopyWith<$Res> {
           __ViewModel value, $Res Function(__ViewModel) then) =
       __$_ViewModelCopyWithImpl<$Res>;
   @override
-  $Res call({AppMenu appMenu, bool isLoading, List<String> dataPrueba});
+  $Res call({AppMenu appMenu, bool isTimeLocal});
 
   @override
   $AppMenuCopyWith<$Res> get appMenu;
@@ -106,33 +101,28 @@ class __$_ViewModelCopyWithImpl<$Res> extends __$ViewModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object appMenu = freezed,
-    Object isLoading = freezed,
-    Object dataPrueba = freezed,
+    Object isTimeLocal = freezed,
   }) {
     return _then(__ViewModel(
       appMenu: appMenu == freezed ? _value.appMenu : appMenu as AppMenu,
-      isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
-      dataPrueba: dataPrueba == freezed
-          ? _value.dataPrueba
-          : dataPrueba as List<String>,
+      isTimeLocal:
+          isTimeLocal == freezed ? _value.isTimeLocal : isTimeLocal as bool,
     ));
   }
 }
 
 /// @nodoc
 class _$__ViewModel implements __ViewModel {
-  const _$__ViewModel({this.appMenu, this.isLoading, this.dataPrueba});
+  const _$__ViewModel({this.appMenu, this.isTimeLocal});
 
   @override
   final AppMenu appMenu;
   @override
-  final bool isLoading;
-  @override
-  final List<String> dataPrueba;
+  final bool isTimeLocal;
 
   @override
   String toString() {
-    return '_ViewModel(appMenu: $appMenu, isLoading: $isLoading, dataPrueba: $dataPrueba)';
+    return '_ViewModel(appMenu: $appMenu, isTimeLocal: $isTimeLocal)';
   }
 
   @override
@@ -142,20 +132,16 @@ class _$__ViewModel implements __ViewModel {
             (identical(other.appMenu, appMenu) ||
                 const DeepCollectionEquality()
                     .equals(other.appMenu, appMenu)) &&
-            (identical(other.isLoading, isLoading) ||
+            (identical(other.isTimeLocal, isTimeLocal) ||
                 const DeepCollectionEquality()
-                    .equals(other.isLoading, isLoading)) &&
-            (identical(other.dataPrueba, dataPrueba) ||
-                const DeepCollectionEquality()
-                    .equals(other.dataPrueba, dataPrueba)));
+                    .equals(other.isTimeLocal, isTimeLocal)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(appMenu) ^
-      const DeepCollectionEquality().hash(isLoading) ^
-      const DeepCollectionEquality().hash(dataPrueba);
+      const DeepCollectionEquality().hash(isTimeLocal);
 
   @JsonKey(ignore: true)
   @override
@@ -164,17 +150,13 @@ class _$__ViewModel implements __ViewModel {
 }
 
 abstract class __ViewModel implements _ViewModel {
-  const factory __ViewModel(
-      {AppMenu appMenu,
-      bool isLoading,
-      List<String> dataPrueba}) = _$__ViewModel;
+  const factory __ViewModel({AppMenu appMenu, bool isTimeLocal}) =
+      _$__ViewModel;
 
   @override
   AppMenu get appMenu;
   @override
-  bool get isLoading;
-  @override
-  List<String> get dataPrueba;
+  bool get isTimeLocal;
   @override
   @JsonKey(ignore: true)
   _$_ViewModelCopyWith<__ViewModel> get copyWith;

@@ -28,7 +28,7 @@
           "program": "lib/main_demo.dart",
           "args": [
             "--flavor",
-            "dev"
+            "tst"
           ]
         },
         {
@@ -68,7 +68,7 @@
           "name": "Flutter Prod",
           "request": "launch",
           "type": "dart",
-          "flutterMode": "release",
+          "flutterMode": "debug",
           "program": "lib/main_prod.dart",
           "args": [
             "--flavor",
