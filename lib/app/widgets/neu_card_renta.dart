@@ -13,7 +13,7 @@ extension WidgetOnClick on Widget {
       );
 }
 
-class NMCardRenta extends StatelessWidget {
+class NMCardRenta extends StatelessWidget with StyleAppMixin {
   final String label;
   final String uidHorario;
   final String subTitle;

@@ -9,7 +9,7 @@ extension WidgetOnClick on Widget {
       );
 }
 
-class NMButton extends StatelessWidget {
+class NMButton extends StatelessWidget with StyleAppMixin {
   final bool down;
   final Widget icon;
   final VoidCallback onClick;

@@ -1,6 +1,5 @@
 import 'package:app_rent_bike/app/Redux/actions/horarios_action.dart';
 import 'package:app_rent_bike/app/Redux/state/app_state.dart';
-import 'package:app_rent_bike/app/widgets/shower_success_or_failure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:shimmer/shimmer.dart';
@@ -14,7 +13,7 @@ extension WidgetOnClick on Widget {
       );
 }
 
-class NMCard extends StatelessWidget {
+class NMCard extends StatelessWidget with StyleAppMixin {
   final bool active;
   final bool isEmpty;
   final bool isLoading;
@@ -131,7 +130,7 @@ class NMCard extends StatelessWidget {
   }
 }
 
-class NMCardLoading extends StatelessWidget {
+class NMCardLoading extends StatelessWidget with StyleAppMixin {
   final bool active;
 
   const NMCardLoading({

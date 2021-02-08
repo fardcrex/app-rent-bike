@@ -10,51 +10,53 @@ Color mCR = Colors.red[200];
 Color fCD = Colors.blueGrey[800];
 Color fCL = const Color(0xff939DB0);
 
-BoxDecoration nMbox = BoxDecoration(
-  borderRadius: BorderRadius.circular(15),
-  color: mC,
-  boxShadow: [
-    BoxShadow(
-      color: mCD,
-      offset: const Offset(6, 6),
-      blurRadius: 4,
-    ),
-    BoxShadow(
-      color: mCL,
-      offset: const Offset(-5, -5),
-      blurRadius: 4,
-    ),
-  ],
-);
-
 extension ColorUtils on Color {
   Color mix(Color another, double amount) {
     return Color.lerp(this, another, amount);
   }
 }
 
-BoxDecoration nMboxInvert = BoxDecoration(
-  borderRadius: BorderRadius.circular(15),
-  // gradient: ConcaveDecoration(),
+mixin StyleAppMixin {
+  BoxDecoration get nMbox => BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        color: mC,
+        boxShadow: [
+          BoxShadow(
+            color: mCD,
+            offset: const Offset(6, 6),
+            blurRadius: 4,
+          ),
+          BoxShadow(
+            color: mCL,
+            offset: const Offset(-5, -5),
+            blurRadius: 4,
+          ),
+        ],
+      );
 
-  boxShadow: [
-    BoxShadow(color: mC.mix(Colors.black, .1), spreadRadius: -2),
-    BoxShadow(color: mCL, offset: const Offset(2, 2), spreadRadius: -3),
-    BoxShadow(color: mC.mix(Colors.black, .03), blurRadius: 3, spreadRadius: -2),
-  ],
-);
-BoxDecoration nMboxEmpty = nMboxInvert.copyWith(color: mCR);
+  BoxDecoration get nMboxInvert => BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        // gradient: ConcaveDecoration(),
 
-BoxDecoration nMboxInvertActive = nMboxInvert.copyWith(color: mCC);
+        boxShadow: [
+          BoxShadow(color: mC.mix(Colors.black, .1), spreadRadius: -2),
+          BoxShadow(color: mCL, offset: const Offset(2, 2), spreadRadius: -3),
+          BoxShadow(color: mC.mix(Colors.black, .03), blurRadius: 3, spreadRadius: -2),
+        ],
+      );
+  BoxDecoration get nMboxEmpty => nMboxInvert.copyWith(color: mCR);
 
-BoxDecoration nMbtn = BoxDecoration(
-  borderRadius: BorderRadius.circular(10),
-  color: mC,
-  boxShadow: [
-    BoxShadow(
-      color: mCD,
-      offset: const Offset(2, 2),
-      blurRadius: 2,
-    )
-  ],
-);
+  BoxDecoration get nMboxInvertActive => nMboxInvert.copyWith(color: mCC);
+
+  BoxDecoration get nMbtn => BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: mC,
+        boxShadow: [
+          BoxShadow(
+            color: mCD,
+            offset: const Offset(2, 2),
+            blurRadius: 2,
+          )
+        ],
+      );
+}

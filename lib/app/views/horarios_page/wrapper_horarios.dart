@@ -1,7 +1,7 @@
 import 'package:app_rent_bike/app/Redux/state/app_state.dart';
 import 'package:app_rent_bike/app/widgets/neu_card.dart';
 import 'package:app_rent_bike/src/Horarios/Domain/horarioDto/horario_dto.dart';
-import 'package:app_rent_bike/src/shared/mixins.dart';
+import 'package:app_rent_bike/src/shared/Domain/mixins.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';

@@ -2,7 +2,7 @@ import 'package:app_rent_bike/src/Horarios/Domain/interfaces_repository.dart';
 import 'package:app_rent_bike/src/Horarios/Domain/horarioDto/horario_dto.dart';
 import 'package:app_rent_bike/src/Horarios/Domain/success_and_failure.dart';
 import 'package:app_rent_bike/src/shared/Domain/uuid.dart';
-import 'package:app_rent_bike/src/shared/mixins.dart';
+import 'package:app_rent_bike/src/shared/Domain/mixins.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:rxdart/rxdart.dart';

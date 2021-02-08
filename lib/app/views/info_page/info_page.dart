@@ -242,7 +242,7 @@ class ListTileNeu extends StatelessWidget {
   }
 }
 
-class CreditCard extends StatelessWidget {
+class CreditCard extends StatelessWidget with StyleAppMixin {
   const CreditCard({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {

@@ -3,7 +3,7 @@ import 'package:app_rent_bike/app/Redux/actions/state_app_actions.dart';
 import 'package:app_rent_bike/app/Redux/state/app_state.dart';
 import 'package:app_rent_bike/injection.dart';
 import 'package:app_rent_bike/src/Horarios/Domain/interfaces_repository.dart';
-import 'package:app_rent_bike/src/shared/mixins.dart';
+import 'package:app_rent_bike/src/shared/Domain/mixins.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:redux_epics/redux_epics.dart';
 
