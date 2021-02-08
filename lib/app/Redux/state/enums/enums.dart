@@ -13,7 +13,7 @@ abstract class AppMenu with _$AppMenu {
       1: const AppMenu.rentas(),
       2: const AppMenu.info(),
     };
-    return map[number] ?? const AppMenu.info();
+    return map[number] ?? const AppMenu.horarios();
   }
 }
 

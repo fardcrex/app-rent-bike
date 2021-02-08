@@ -10,8 +10,17 @@ AppState appReducer(AppState state, dynamic action) {
       isLoading: _changeLoadingReducer(state.isLoading, action),
       appMenu: menusReducer(state.appMenu, action),
       uidUser: userReducer(state.uidUser, action),
+      dateTimeNow: dateTimeNowReduce(state.dateTimeNow, action),
       isTimeLocal: timeZoneReducer(state.isTimeLocal, action),
       horarios: horariosReducer(state.horarios, action));
+}
+
+final Reducer<DateTime> dateTimeNowReduce = combineReducers<DateTime>([
+  TypedReducer<DateTime, UpdateDateTimeAction>(_updateDateTimeReducer),
+]);
+
+DateTime _updateDateTimeReducer(DateTime _, UpdateDateTimeAction action) {
+  return action.dateTime;
 }
 
 //----------------------------------------------------------------

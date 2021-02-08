@@ -16,6 +16,7 @@ extension WidgetOnClick on Widget {
 class NMCard extends StatelessWidget {
   final bool active;
   final bool empty;
+  final bool isLoading;
   final String label;
   final String uidHorario;
   final int horaInicio;
@@ -34,9 +35,17 @@ class NMCard extends StatelessWidget {
     this.minuteFin = 0,
     this.day,
     this.uidHorario,
+    this.isLoading = false,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final textStyleTitle = Theme.of(context).textTheme.bodyText2.copyWith(
+          color: isLoading ? fCL : Theme.of(context).focusColor,
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+        );
+    final textStyleSubTitle = TextStyle(color: isLoading ? fCL : Theme.of(context).primaryColor, fontSize: 16);
+
     return ConstrainedBox(
       constraints: const BoxConstraints(minHeight: 100.0),
       child: Container(
@@ -54,28 +63,21 @@ class NMCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Bicicletas  disponibles:',
-                  style: Theme.of(context).textTheme.bodyText2.copyWith(
-                        color: Theme.of(context).focusColor,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                ),
+                Text('Bicicletas  disponibles:', style: textStyleTitle),
                 const SizedBox(height: 3),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text('$day ', style: TextStyle(color: Theme.of(context).primaryColor)),
-                    const SizedBox(width: 2),
+                    Text('$day ', style: textStyleSubTitle),
+                    const SizedBox(width: 4),
                     Text(
                         "${horaInicio > 9 ? '' : 0}$horaInicio:"
                         "${minuteInicio > 9 ? '' : 0}$minuteInicio  - ",
-                        style: TextStyle(color: Theme.of(context).primaryColor)),
+                        style: textStyleSubTitle),
                     Text(
                         "${horaFin > 9 ? '' : 0}$horaFin:"
                         "${minuteFin > 9 ? '' : 0}$minuteFin",
-                        style: TextStyle(color: Theme.of(context).primaryColor))
+                        style: textStyleSubTitle)
                   ],
                 ),
               ],
@@ -84,8 +86,8 @@ class NMCard extends StatelessWidget {
             Text(
               ' $label',
               style: Theme.of(context).textTheme.bodyText2.copyWith(
-                    color: Theme.of(context).focusColor,
-                    fontSize: 22,
+                    color: isLoading ? fCL : Theme.of(context).focusColor,
+                    fontSize: 24,
                     fontWeight: FontWeight.w500,
                   ),
             ),

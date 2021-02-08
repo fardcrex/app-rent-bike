@@ -2,21 +2,31 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'horario_dto.g.dart';
 part 'horario_dto.freezed.dart';
 
+class JsonKeyHorario {
+  static const uidHorario = 'uidHorario';
+  static const idUsers = 'id_users';
+  static const bikesAvailables = 'bikesAvailables';
+  static const timestamp = 'timestamp';
+}
+
 @freezed
 abstract class HorarioDto with _$HorarioDto {
   const factory HorarioDto({
-    String uidHorario,
     int hourInit,
     int minuteInit,
     int hourFinish,
     int minuteFinish,
-    int bikesAvailables,
-    int timestamp,
-    List<String> idUsers,
+    @Default(false) bool isLoading,
+    @JsonKey(name: JsonKeyHorario.timestamp) int timestamp,
+    @JsonKey(name: JsonKeyHorario.idUsers) List<String> idUsers,
+    @JsonKey(name: JsonKeyHorario.uidHorario) String uidHorario,
+    @JsonKey(name: JsonKeyHorario.bikesAvailables) int bikesAvailables,
   }) = _HorarioDto;
 
   factory HorarioDto.fromJson(Map<String, dynamic> json) => _$HorarioDtoFromJson(json);
 }
+
+//============================================================================
 
 @freezed
 abstract class ConfigDto with _$ConfigDto {

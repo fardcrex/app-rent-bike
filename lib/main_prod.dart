@@ -14,7 +14,7 @@ Future<void> main() async {
 
   FlavorConfig(name: 'Prod', variables: {});
 
-  configureInjection(const Env.prod());
+  await configureInjection(const Env.prod());
 
   runApp(getApp(
     titleApp: 'Renta de Bicicleta',

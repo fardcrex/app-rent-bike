@@ -1,3 +1,4 @@
+import 'package:app_rent_bike/src/shared/Domain/interface_setting.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -5,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
 
+import '../injection.dart';
 import './widgets/styles.dart';
 import 'Redux/middleware/app_epic_middleware.dart';
 import 'Redux/middleware/app_middleware.dart';
@@ -15,11 +17,15 @@ export 'package:redux/redux.dart';
 export 'package:flutter/material.dart';
 
 Widget getApp({@required String titleApp}) {
+  final fromSettings = getIt<InterfaceUserSettingsRepository>();
   return MyApp(
     titleApp: titleApp,
     store: Store<AppState>(
       appReducer,
-      initialState: AppState.initial(),
+      initialState: AppState.initial(
+        appMenu: fromSettings.getAppMenu(),
+        isTimeLocal: fromSettings.getIfIsLocalTime(),
+      ),
       middleware: [...createStoreTodosMiddleware(), EpicMiddleware(getEpicMiddlewares())],
     ),
   );

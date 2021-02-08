@@ -1,8 +1,6 @@
 import 'package:app_rent_bike/src/shared/Domain/uuid.dart';
-import 'package:dartz/dartz.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'auth_failure.dart';
+import 'interfaces_auth.dart';
 
 class ServicesAuth {
   ServicesAuth._(this._uidUser);
@@ -32,15 +30,4 @@ class ServicesAuth {
     }
     return ServicesAuth._(uid);
   }
-}
-
-abstract class InterfaceReadCredentialsRepository {
-  Future<Either<AuthFailure, Unit>> signInAnonymous();
-  String get uidUser;
-  bool isUserAuthenticate();
-}
-
-abstract class InterfaceWriteCredentialsRepository {
-  void signOut();
-  void saveCredentials({String uidUser, String token});
 }

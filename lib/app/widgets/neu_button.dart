@@ -77,7 +77,7 @@ class _NMButtonWithStateState extends State<NMButtonWithState> {
       duration: _duration,
       icon: widget.icon,
       isSquare: true,
-      padding: 18,
+      padding: 16,
     );
   }
 }

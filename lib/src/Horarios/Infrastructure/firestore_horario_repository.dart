@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:app_rent_bike/src/Horarios/Domain/interfaces_repository.dart';
 import 'package:app_rent_bike/src/Horarios/Domain/horarioDto/horario_dto.dart';
+import 'package:app_rent_bike/src/shared/Domain/uuid.dart';
 import 'package:app_rent_bike/src/shared/mixins.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:rxdart/rxdart.dart';
@@ -47,9 +46,9 @@ class FirestoreHorarioRepository with DateTimeMixin implements InterfaceHorarioR
   Future<void> _updateLimitOfBikesToHorarios(int limit) async {
     try {
       final collection = await _collectionReferenceOfHorarios.get(const GetOptions(source: Source.server));
-      final futuresList = collection.docs.where((element) => element.exists).map((doc) => doc.reference.update(
-            HorarioDto.fromJson(doc.data()).copyWith(bikesAvailables: limit).toJson(),
-          ));
+      final futuresList = collection.docs
+          .where((element) => element.exists)
+          .map((doc) => doc.reference.update({JsonKeyHorario.bikesAvailables: limit}));
 
       await Future.wait(futuresList);
     } catch (e) {
@@ -61,9 +60,7 @@ class FirestoreHorarioRepository with DateTimeMixin implements InterfaceHorarioR
     try {
       final collection = await _collectionReferenceOfHorarios.get();
       final futuresList = collection.docs.where((element) => element.exists).map(
-            (doc) => doc.reference.update(
-              HorarioDto.fromJson(doc.data()).copyWith(idUsers: []).toJson(),
-            ),
+            (doc) => doc.reference.update({JsonKeyHorario.idUsers: []}),
           );
       await Future.wait(futuresList);
     } catch (e) {
@@ -79,14 +76,13 @@ class FirestoreHorarioRepository with DateTimeMixin implements InterfaceHorarioR
     }
   }
 
-  Future<void> _updateTimeStamp(HorarioDto horario) async {
+  Future<void> _cleanListUsers(HorarioDto horario) async {
     try {
-      await _collectionReferenceOfHorarios.doc(horario.uidHorario).update(horario
-          .copyWith(
-              timestamp: DateTime.fromMillisecondsSinceEpoch(horario.timestamp)
-                  .add(const Duration(days: 1))
-                  .millisecondsSinceEpoch)
-          .toJson());
+      await _collectionReferenceOfHorarios.doc(horario.uidHorario).update({
+        JsonKeyHorario.idUsers: [],
+        JsonKeyHorario.timestamp:
+            DateTime.fromMillisecondsSinceEpoch(horario.timestamp).add(const Duration(days: 1)).millisecondsSinceEpoch,
+      });
     } catch (e) {
       return;
     }
@@ -142,8 +138,7 @@ class FirestoreHorarioRepository with DateTimeMixin implements InterfaceHorarioR
       (list, config, dateTimeNow) {
         for (final horario in list) {
           if (isAnoherDayMixin(dateTimeNow.millisecondsSinceEpoch, horario.timestamp ?? 0)) continue;
-          if (horario.hourFinish * 60 + horario.minuteFinish > dateTimeNow.hour * 60 + dateTimeNow.minute) continue;
-          _updateTimeStamp(horario);
+          if (isHisTimePassed(horario)) _cleanListUsers(horario);
         }
 
         if (!config.isCreateHorarios) {
@@ -160,7 +155,7 @@ class FirestoreHorarioRepository with DateTimeMixin implements InterfaceHorarioR
 
   List<HorarioDto> _createListDocsHorarios({int limitBikes}) {
     final dateNow = dateTimeGmt5;
-    final rng = Random();
+
     final listHorarios = <HorarioDto>[];
     for (var i = 0; i < 24; i++) {
       final timeHour = i ~/ 2;
@@ -169,7 +164,7 @@ class FirestoreHorarioRepository with DateTimeMixin implements InterfaceHorarioR
       final minuteInit = i.isEven ? 0 : 30;
       final minuteFinish = i.isEven ? 30 : 0;
       listHorarios.add(HorarioDto(
-          uidHorario: '$hourInit-$minuteInit-$hourFinish-$minuteFinish-${rng.nextInt(9000) + 999}',
+          uidHorario: Uuid().generateV4(),
           bikesAvailables: limitBikes,
           hourInit: hourInit,
           hourFinish: hourFinish,

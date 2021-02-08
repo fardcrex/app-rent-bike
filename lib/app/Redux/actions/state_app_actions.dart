@@ -12,3 +12,9 @@ class ChangeToNotLoadingAction {}
 class LoadDataAction {}
 
 class ChangeTimeZone {}
+
+class UpdateDateTimeAction {
+  final DateTime dateTime;
+
+  UpdateDateTimeAction(this.dateTime);
+}

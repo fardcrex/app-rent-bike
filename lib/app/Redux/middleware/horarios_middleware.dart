@@ -15,7 +15,6 @@ class HorariosEpic implements EpicClass<AppState> {
   @override
   Stream<dynamic> call(Stream<dynamic> actions, EpicStore<AppState> store) {
     return actions.whereType<InitStreamHorariosAction>().switchMap((InitStreamHorariosAction requestAction) {
-      print('------------ InitStreamHorariosAction --------------');
       return service
           .getHorariosStream()
           .map((list) => SetHorariosAction(list)) // 7
@@ -30,10 +29,11 @@ Function(
   NextDispatcher next,
 ) getPressSwitchMiddleware() {
   final repositoryHorario = getIt<InterfaceHorarioRepository>();
-  final getDataPrueba = UpdateHorario(repositoryHorario);
+  final updateHorario = UpdateHorario(repositoryHorario);
 
   return (Store<AppState> store, PressSwitchHorarioAction action, NextDispatcher next) {
-    getDataPrueba.execute(uidHorario: action.uidHorario, uidUser: store.state.uidUser);
+    next(action);
+    updateHorario.execute(uidHorario: action.uidHorario, uidUser: store.state.uidUser);
     // next(ChangeToNotLoadingAction());
   };
 }

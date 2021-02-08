@@ -1,4 +1,4 @@
-import 'package:app_rent_bike/src/Auth/Domain/interface_data_prueba_repository.dart';
+import 'package:app_rent_bike/src/User/Domain/interface_data_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class GetDataUser {

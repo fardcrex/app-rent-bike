@@ -21,7 +21,7 @@ Future<void> main() async {
       Port.anotherPlatform: 'localhost:$portLocal',
     },
   );
-  configureInjection(const Env.dev());
+  await configureInjection(const Env.dev());
 
   runApp(FlavorBanner(
     child: getApp(

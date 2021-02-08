@@ -1,5 +1,7 @@
 import 'package:app_rent_bike/app/Redux/actions/state_app_actions.dart';
 import 'package:app_rent_bike/app/Redux/state/app_state.dart';
+import 'package:app_rent_bike/injection.dart';
+import 'package:app_rent_bike/src/shared/Domain/interface_setting.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -96,6 +98,8 @@ abstract class _ViewModel with _$_ViewModel {
     return _ViewModel(
       appMenu: store.state.appMenu,
       onTabSelected: (appMenu) {
+        final fromSettings = getIt<InterfaceUserSettingsRepository>();
+        fromSettings.saveLastAppMenuSetting(appMenu);
         store.dispatch(UpdateMenuAction(appMenu));
       },
     );

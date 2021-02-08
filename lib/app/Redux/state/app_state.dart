@@ -16,13 +16,13 @@ abstract class AppState with _$AppState {
     final DateTime dateTimeNow,
   }) = _AppState;
 
-  factory AppState.initial() => AppState(
-      appMenu: const AppMenu.horarios(),
+  factory AppState.initial({AppMenu appMenu, bool isTimeLocal, String uidUser}) => AppState(
+      appMenu: appMenu ?? const AppMenu.horarios(),
       isLoading: true,
       horarios: [],
       dateTimeNow: DateTime.now(),
-      uidUser: '-1',
-      isTimeLocal: true);
+      uidUser: uidUser ?? '-1',
+      isTimeLocal: isTimeLocal ?? true);
 }
 
 String getDia(int dia) {

@@ -14,7 +14,7 @@ class _$_ViewModelTearOff {
   const _$_ViewModelTearOff();
 
 // ignore: unused_element
-  __ViewModel call({bool isTimeLocal, dynamic Function() onTabSelected}) {
+  __ViewModel call({bool isTimeLocal, dynamic Function(bool) onTabSelected}) {
     return __ViewModel(
       isTimeLocal: isTimeLocal,
       onTabSelected: onTabSelected,
@@ -29,7 +29,7 @@ const _$ViewModel = _$_ViewModelTearOff();
 /// @nodoc
 mixin _$_ViewModel {
   bool get isTimeLocal;
-  dynamic Function() get onTabSelected;
+  dynamic Function(bool) get onTabSelected;
 
   @JsonKey(ignore: true)
   _$ViewModelCopyWith<_ViewModel> get copyWith;
@@ -40,7 +40,7 @@ abstract class _$ViewModelCopyWith<$Res> {
   factory _$ViewModelCopyWith(
           _ViewModel value, $Res Function(_ViewModel) then) =
       __$ViewModelCopyWithImpl<$Res>;
-  $Res call({bool isTimeLocal, dynamic Function() onTabSelected});
+  $Res call({bool isTimeLocal, dynamic Function(bool) onTabSelected});
 }
 
 /// @nodoc
@@ -61,7 +61,7 @@ class __$ViewModelCopyWithImpl<$Res> implements _$ViewModelCopyWith<$Res> {
           isTimeLocal == freezed ? _value.isTimeLocal : isTimeLocal as bool,
       onTabSelected: onTabSelected == freezed
           ? _value.onTabSelected
-          : onTabSelected as dynamic Function(),
+          : onTabSelected as dynamic Function(bool),
     ));
   }
 }
@@ -72,7 +72,7 @@ abstract class _$_ViewModelCopyWith<$Res> implements _$ViewModelCopyWith<$Res> {
           __ViewModel value, $Res Function(__ViewModel) then) =
       __$_ViewModelCopyWithImpl<$Res>;
   @override
-  $Res call({bool isTimeLocal, dynamic Function() onTabSelected});
+  $Res call({bool isTimeLocal, dynamic Function(bool) onTabSelected});
 }
 
 /// @nodoc
@@ -95,7 +95,7 @@ class __$_ViewModelCopyWithImpl<$Res> extends __$ViewModelCopyWithImpl<$Res>
           isTimeLocal == freezed ? _value.isTimeLocal : isTimeLocal as bool,
       onTabSelected: onTabSelected == freezed
           ? _value.onTabSelected
-          : onTabSelected as dynamic Function(),
+          : onTabSelected as dynamic Function(bool),
     ));
   }
 }
@@ -107,7 +107,7 @@ class _$__ViewModel with DiagnosticableTreeMixin implements __ViewModel {
   @override
   final bool isTimeLocal;
   @override
-  final dynamic Function() onTabSelected;
+  final dynamic Function(bool) onTabSelected;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -149,12 +149,12 @@ class _$__ViewModel with DiagnosticableTreeMixin implements __ViewModel {
 
 abstract class __ViewModel implements _ViewModel {
   const factory __ViewModel(
-      {bool isTimeLocal, dynamic Function() onTabSelected}) = _$__ViewModel;
+      {bool isTimeLocal, dynamic Function(bool) onTabSelected}) = _$__ViewModel;
 
   @override
   bool get isTimeLocal;
   @override
-  dynamic Function() get onTabSelected;
+  dynamic Function(bool) get onTabSelected;
   @override
   @JsonKey(ignore: true)
   _$_ViewModelCopyWith<__ViewModel> get copyWith;

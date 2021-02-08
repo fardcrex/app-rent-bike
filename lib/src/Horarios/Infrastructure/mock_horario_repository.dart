@@ -39,9 +39,8 @@ class MockHorarioRepository with DateTimeMixin implements InterfaceHorarioReposi
           }).toList();
         }),
         ConcatStream([
-          Stream.value(DateTime.now()),
-          TimerStream(DateTime.now(), const Duration(seconds: 4)),
-          Stream.periodic(const Duration(milliseconds: 50)).map((event) => DateTime.now()),
+          TimerStream(DateTime.now(), const Duration(seconds: 3)),
+          Stream.periodic(const Duration(milliseconds: 100)).map((event) => DateTime.now()),
         ]), (a, b) {
       return a;
     });

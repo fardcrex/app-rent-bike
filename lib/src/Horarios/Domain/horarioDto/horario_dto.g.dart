@@ -8,27 +8,29 @@ part of 'horario_dto.dart';
 
 _$_HorarioDto _$_$_HorarioDtoFromJson(Map<String, dynamic> json) {
   return _$_HorarioDto(
-    uidHorario: json['uidHorario'] as String,
     hourInit: json['hourInit'] as int,
     minuteInit: json['minuteInit'] as int,
     hourFinish: json['hourFinish'] as int,
     minuteFinish: json['minuteFinish'] as int,
-    bikesAvailables: json['bikesAvailables'] as int,
+    isLoading: json['isLoading'] as bool ?? false,
     timestamp: json['timestamp'] as int,
-    idUsers: (json['idUsers'] as List)?.map((e) => e as String)?.toList(),
+    idUsers: (json['id_users'] as List)?.map((e) => e as String)?.toList(),
+    uidHorario: json['uidHorario'] as String,
+    bikesAvailables: json['bikesAvailables'] as int,
   );
 }
 
 Map<String, dynamic> _$_$_HorarioDtoToJson(_$_HorarioDto instance) =>
     <String, dynamic>{
-      'uidHorario': instance.uidHorario,
       'hourInit': instance.hourInit,
       'minuteInit': instance.minuteInit,
       'hourFinish': instance.hourFinish,
       'minuteFinish': instance.minuteFinish,
-      'bikesAvailables': instance.bikesAvailables,
+      'isLoading': instance.isLoading,
       'timestamp': instance.timestamp,
-      'idUsers': instance.idUsers,
+      'id_users': instance.idUsers,
+      'uidHorario': instance.uidHorario,
+      'bikesAvailables': instance.bikesAvailables,
     };
 
 _$_ConfigDto _$_$_ConfigDtoFromJson(Map<String, dynamic> json) {

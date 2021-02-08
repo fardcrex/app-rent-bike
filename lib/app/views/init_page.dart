@@ -1,3 +1,4 @@
+import 'package:app_rent_bike/app/Redux/actions/horarios_action.dart';
 import 'package:app_rent_bike/app/Redux/actions/state_app_actions.dart';
 import 'package:app_rent_bike/app/Redux/state/app_state.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -9,7 +10,7 @@ import 'package:redux/redux.dart';
 import 'home_page.dart';
 import 'horarios_page/wrapper_horarios.dart';
 import 'info_page/info_page.dart';
-import 'rentas_page/rentas_page.dart';
+import 'rentas_page/wrapper_rentas.dart';
 
 part 'init_page.freezed.dart';
 
@@ -18,8 +19,8 @@ class InitPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, _ViewModel>(
-      onDispose: (store) {},
-      onInit: (store) => store.dispatch(LoadDataAction()),
+      onDispose: (store) => store.dispatch(CancelStreamHorariosAction()),
+      onInit: (store) => {store.dispatch(LoadDataAction()), store.dispatch(InitStreamHorariosAction())},
       converter: _ViewModel.fromStore,
       distinct: true,
       builder: (context, vm) {
@@ -33,7 +34,7 @@ class InitPage extends StatelessWidget {
         return HomePage(
           body: vm.appMenu.map(
             horarios: (_) => WrapperHorariosPage(),
-            rentas: (_) => const RentasPage(),
+            rentas: (_) => WrapperRentasPage(),
             info: (_) => const InfoPage(),
           ),
           titlePage: vm.appMenu.map(
@@ -41,12 +42,11 @@ class InitPage extends StatelessWidget {
             rentas: (_) => 'Mis Rentas',
             info: (_) => 'Acerca de la App',
           ),
-          action: vm.appMenu.map(
-            horarios: (_) => vm.isTimeLocal
+          action: vm.appMenu.maybeMap(
+            info: (_) => [],
+            orElse: () => vm.isTimeLocal
                 ? [Text('Hora', style: styleText), Text('local', style: styleText)]
                 : [Text('GTM-5', style: styleText)],
-            rentas: (_) => [],
-            info: (_) => [],
           ),
         );
       },
