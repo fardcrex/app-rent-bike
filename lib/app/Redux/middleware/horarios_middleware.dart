@@ -15,9 +15,10 @@ class HorariosEpic implements EpicClass<AppState> {
   @override
   Stream<dynamic> call(Stream<dynamic> actions, EpicStore<AppState> store) {
     return actions.whereType<InitStreamHorariosAction>().switchMap((InitStreamHorariosAction requestAction) {
+      print('------------ InitStreamHorariosAction --------------');
       return service
           .getHorariosStream()
-          .map((list) => SetHorariossAction(list)) // 7
+          .map((list) => SetHorariosAction(list)) // 7
           .takeUntil(actions.whereType<CancelStreamHorariosAction>()); // 8
     });
   }

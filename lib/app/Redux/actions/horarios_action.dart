@@ -4,10 +4,10 @@ class InitStreamHorariosAction {}
 
 class CancelStreamHorariosAction {}
 
-class SetHorariossAction {
+class SetHorariosAction {
   final List<HorarioDto> listHorarios;
 
-  SetHorariossAction(this.listHorarios);
+  SetHorariosAction(this.listHorarios);
 }
 
 class PressSwitchHorarioAction {

@@ -6,6 +6,7 @@ import 'injection.dart';
 
 //PUERTO DEL EMULADOR LOCAL DE FIREBASE
 const portLocal = '8086';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -16,14 +17,14 @@ Future<void> main() async {
     color: Colors.orange[900],
     location: BannerLocation.bottomStart,
     variables: {
-      'portForAndroid': '10.0.2.2:$portLocal',
-      'portForAnothers': 'localhost:$portLocal',
+      Port.androidPlatform: '10.0.2.2:$portLocal',
+      Port.anotherPlatform: 'localhost:$portLocal',
     },
   );
   configureInjection(const Env.dev());
 
   runApp(FlavorBanner(
-    child: const MyApp(
+    child: getApp(
       titleApp: 'Renta de Bicicleta dev',
     ),
   ));

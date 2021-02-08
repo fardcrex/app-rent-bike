@@ -10,9 +10,9 @@ class FirestoreDataRepository implements InterfaceDataRepository {
   @override
   Future<List<String>> getDataPrueba() async {
     try {
-      final DocumentSnapshot resp = await _firestore.doc('/data/EYoCNhqtg1dmEILg7xlq').get();
+      final resp = await _firestore.collection('/data_prueba').get();
 
-      return [resp.data().toString()];
+      return resp.docs.map((doc) => doc.data().toString()).toList();
     } catch (e) {
       return [];
     }

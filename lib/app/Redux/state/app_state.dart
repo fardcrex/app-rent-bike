@@ -21,7 +21,7 @@ abstract class AppState with _$AppState {
       isLoading: true,
       horarios: [],
       dateTimeNow: DateTime.now(),
-      uidUser: '55',
+      uidUser: '-1',
       isTimeLocal: true);
 }
 

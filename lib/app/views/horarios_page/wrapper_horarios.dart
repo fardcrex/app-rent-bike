@@ -41,6 +41,7 @@ class WrapperHorariosPage extends StatelessWidget with DateTimeMixin {
     String uidUser, {
     bool isTimeLocal,
   }) {
+    print(uidUser);
     return horariosList.map((dto) {
       bool isToday;
       String day;
@@ -50,7 +51,8 @@ class WrapperHorariosPage extends StatelessWidget with DateTimeMixin {
         isToday = !isAnoherDayMixin(dateTimeGmt5.millisecondsSinceEpoch, dto.timestamp);
         day = isToday ? 'Hoy' : 'Mañana';
       } catch (e) {
-        day = 'Dia aun no disponible';
+        day = 'Sin fecha';
+        isToday = false;
       }
 
       final horarioInit = DateTime(2000, 1, 1, dto.hourInit, dto.minuteInit).add(Duration(hours: diferenceHour));

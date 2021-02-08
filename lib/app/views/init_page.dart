@@ -29,6 +29,7 @@ class InitPage extends StatelessWidget {
           fontWeight: FontWeight.bold,
         );
         // FlushbarHelper.createError(message: "Error carajo", duration: Duration(seconds: 2)).show(context);
+
         return HomePage(
           body: vm.appMenu.map(
             horarios: (_) => WrapperHorariosPage(),

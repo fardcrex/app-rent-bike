@@ -16,7 +16,7 @@ Future<void> main() async {
 
   configureInjection(const Env.prod());
 
-  runApp(const MyApp(
+  runApp(getApp(
     titleApp: 'Renta de Bicicleta',
   ));
 }

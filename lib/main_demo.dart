@@ -8,6 +8,7 @@ import 'injection.dart';
 // El cual debe incluir el nombre del paquete para modo test.
 // mas info del flavor en el archivo: "android\app\build.gradle"
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   FlavorConfig(
     name: 'Test',
     location: BannerLocation.bottomStart,
@@ -15,10 +16,10 @@ Future<void> main() async {
     variables: {},
   );
 
-  configureInjection(const Env.test());
+  await configureInjection(const Env.test());
 
   runApp(FlavorBanner(
-    child: const MyApp(
+    child: getApp(
       titleApp: 'Demo Renta de Bicicleta',
     ),
   ));

@@ -14,17 +14,24 @@ import 'views/init_page.dart';
 export 'package:redux/redux.dart';
 export 'package:flutter/material.dart';
 
-class MyApp extends StatelessWidget {
-  static final Store<AppState> store = Store<AppState>(
-    appReducer,
-    initialState: AppState.initial(),
-    middleware: [...createStoreTodosMiddleware(), EpicMiddleware(getEpicMiddlewares())],
+Widget getApp({@required String titleApp}) {
+  return MyApp(
+    titleApp: titleApp,
+    store: Store<AppState>(
+      appReducer,
+      initialState: AppState.initial(),
+      middleware: [...createStoreTodosMiddleware(), EpicMiddleware(getEpicMiddlewares())],
+    ),
   );
-  final String titleApp;
+}
 
+class MyApp extends StatelessWidget {
+  final String titleApp;
+  final Store<AppState> store;
   const MyApp({
     Key key,
     @required this.titleApp,
+    @required this.store,
   }) : super(key: key);
 
   @override
