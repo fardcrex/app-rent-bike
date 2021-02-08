@@ -1,8 +1,10 @@
 import 'package:app_rent_bike/src/Horarios/Domain/interfaces_repository.dart';
 import 'package:app_rent_bike/src/Horarios/Domain/horarioDto/horario_dto.dart';
+import 'package:app_rent_bike/src/Horarios/Domain/success_and_failure.dart';
 import 'package:app_rent_bike/src/shared/Domain/uuid.dart';
 import 'package:app_rent_bike/src/shared/mixins.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dartz/dartz.dart';
 import 'package:rxdart/rxdart.dart';
 
 class FirestoreHorarioRepository with DateTimeMixin implements InterfaceHorarioRepository {
@@ -179,9 +181,12 @@ class FirestoreHorarioRepository with DateTimeMixin implements InterfaceHorarioR
   }
 
   @override
-  Future<void> selectHorario({String uidHorario, String uidUser}) async {
+  Future<Either<HorarioFailure, HorarioSuccess>> selectHorario({String uidHorario, String uidUser}) async {
+    Either<HorarioFailure, HorarioSuccess> resp;
+    bool isCancelMode = false;
     try {
       final docReference = _collectionReferenceOfHorarios.doc(uidHorario);
+
       await _firestore.runTransaction((transaction) async {
         final document = await transaction.get(docReference);
         if (!document.exists) return;
@@ -190,19 +195,25 @@ class FirestoreHorarioRepository with DateTimeMixin implements InterfaceHorarioR
         final userUidList = data.idUsers;
 
         if (userUidList.contains(uidUser)) {
+          isCancelMode = true;
           final newList = userUidList.where((user) => user != uidUser).toList();
           transaction.update(docReference, data.copyWith(idUsers: newList).toJson());
+          resp = const Right(HorarioSuccess.cancelBike());
           return;
         }
-        if (userUidList.length == data.bikesAvailables) return;
+        if (userUidList.length == data.bikesAvailables) {
+          resp = const Left(HorarioFailure.emptyBikes());
+          return;
+        }
 
         userUidList.add(uidUser);
         final newList = userUidList.toSet();
         transaction.update(docReference, data.copyWith(idUsers: newList.toList()).toJson());
+        resp = const Right(HorarioSuccess.selectBike());
       });
-      return;
+      return resp;
     } catch (e) {
-      return;
+      return isCancelMode ? const Left(HorarioFailure.errorCancelBike()) : const Left(HorarioFailure.errorSelectBike());
     }
   }
 }

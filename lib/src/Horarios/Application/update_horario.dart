@@ -1,13 +1,13 @@
 import 'package:app_rent_bike/src/Horarios/Domain/interfaces_repository.dart';
+import 'package:app_rent_bike/src/Horarios/Domain/success_and_failure.dart';
+import 'package:dartz/dartz.dart';
 
 class UpdateHorario {
   final InterfaceHorarioRepository horarioRepository;
 
   UpdateHorario(this.horarioRepository);
-  Future<void> execute({String uidHorario, String uidUser}) async {
-    await Future.delayed(const Duration());
-
-    await horarioRepository.selectHorario(uidHorario: uidHorario, uidUser: uidUser);
+  Future<Either<HorarioFailure, HorarioSuccess>> execute({String uidHorario, String uidUser}) async {
+    return horarioRepository.selectHorario(uidHorario: uidHorario, uidUser: uidUser);
     /* if (await bdLocalRepository.isNotRegisterOnApp()) {
       await horarioRepository.tryCreateHorarios();
       return;
@@ -15,6 +15,5 @@ class UpdateHorario {
     if (await bdLocalRepository.isAnoherDay()) {
       await horarioRepository.tryUpdateHorarios();
     } */
-    return;
   }
 }

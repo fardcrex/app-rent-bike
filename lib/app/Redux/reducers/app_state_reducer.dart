@@ -12,6 +12,7 @@ AppState appReducer(AppState state, dynamic action) {
       uidUser: userReducer(state.uidUser, action),
       dateTimeNow: dateTimeNowReduce(state.dateTimeNow, action),
       isTimeLocal: timeZoneReducer(state.isTimeLocal, action),
+      successOrFailureHorarioOption: successOrFailureReducer(state.successOrFailureHorarioOption, action),
       horarios: horariosReducer(state.horarios, action));
 }
 

@@ -68,22 +68,24 @@ class WrapperRentasPage extends StatelessWidget with DateTimeMixin {
       final day = isToday ? 'Hoy' : 'Mañana';
       final subTitle = isVigente ? 'Termina en:' : 'Comienza en:';
 
-      return NMCardRenta(
-        uidHorario: dto.uidHorario,
-        horaFin: timeFinishFormat.hour,
-        horaInicio: timeInitFormat.hour,
-        subTitle: subTitle,
-        minuteFin: timeFinishFormat.minute,
-        minuteInicio: timeInitFormat.minute,
-        label: tiempoFaltante.isNegative && tiempoParaEmpezar.isNegative && isToday ? '' : label,
-        day: day,
-        key: Key(dto.uidHorario),
-      );
+      return dto.isLoading
+          ? Container(height: 102.0)
+          : NMCardRenta(
+              uidHorario: dto.uidHorario,
+              horaFin: timeFinishFormat.hour,
+              horaInicio: timeInitFormat.hour,
+              subTitle: subTitle,
+              minuteFin: timeFinishFormat.minute,
+              minuteInicio: timeInitFormat.minute,
+              label: tiempoFaltante.isNegative && tiempoParaEmpezar.isNegative && isToday ? '' : label,
+              day: day,
+              key: Key(dto.uidHorario),
+            );
     }).toList();
   }
 
   String getTextTime(Duration duration) =>
-      '${duration.inHours == 0 ? "" : "${duration.inHours}h"} ${duration.inMinutes % 60 == 0 ? "" : "${duration.inMinutes % 60}m"} ${duration.inSeconds % 60}s';
+      '${duration.inHours == 0 ? "" : "${duration.inHours}h"} ${duration.inMinutes % 60 == 0 ? "" : "${duration.inMinutes % 60}m"} ${duration.inHours != 0 ? "" : "${duration.inSeconds % 60}s"}';
 }
 
 @freezed

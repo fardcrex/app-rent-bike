@@ -59,7 +59,7 @@ class WrapperHorariosPage extends StatelessWidget with DateTimeMixin {
         minuteFin: horarioFinish.minute,
         minuteInicio: isHisTimeVigente(dto) ? dateTimeGmt5.minute : horarioInit.minute,
         label: '${dto.bikesAvailables - dto.idUsers.length}',
-        empty: dto.bikesAvailables == dto.idUsers.length,
+        isEmpty: dto.bikesAvailables == dto.idUsers.length,
         day: day,
         key: Key(dto.uidHorario),
       );

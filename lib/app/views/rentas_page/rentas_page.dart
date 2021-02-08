@@ -18,7 +18,7 @@ class RentasPage extends StatelessWidget {
                     Image.asset('assets/bicycle-man.png'),
                     const SizedBox(height: 25),
                     Text(
-                      'Aún no tiene rentas',
+                      'No hay rentas',
                       style: Theme.of(context)
                           .textTheme
                           .bodyText2

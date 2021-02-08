@@ -42,61 +42,58 @@ class NMCardRenta extends StatelessWidget {
           fontWeight: FontWeight.w500,
         );
 
-    return ConstrainedBox(
-      constraints: const BoxConstraints(minHeight: 100.0),
-      child: Container(
-        margin: const EdgeInsets.only(
-          bottom: 9,
-          top: 9,
-          left: 20,
-          right: 20,
-        ),
-        padding: const EdgeInsets.symmetric(vertical: 12),
-        decoration: nMbox,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            //ddsadconst SizedBox(width: 10),
-            //const Spacer(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: <Widget>[
-                    Text('$day ', style: textStyleTitle),
-                    const SizedBox(width: 2),
-                    Text(
-                        "${horaInicio > 9 ? '' : 0}$horaInicio:"
-                        "${minuteInicio > 9 ? '' : 0}$minuteInicio  - ",
-                        style: textStyleTitle),
-                    Text(
-                        "${horaFin > 9 ? '' : 0}$horaFin:"
-                        "${minuteFin > 9 ? '' : 0}$minuteFin",
-                        style: textStyleTitle)
-                  ],
-                ),
-                const SizedBox(height: 3),
-                Row(
-                  children: [
-                    Text(subTitle, style: textStyleSubTitle(16)),
-                    const SizedBox(width: 5),
-                    Text(label, style: textStyleSubTitle(18)),
-                  ],
-                ),
-              ],
-            ),
-
-            //  const Spacer(),
-            // const SizedBox(width: 30),
-            NMButtonWithState(
-              onClick: () => StoreProvider.of<AppState>(context).dispatch(PressSwitchHorarioAction(uidHorario)),
-              icon: const Icon(
-                Icons.alarm_off,
-                color: Colors.red,
-                size: 28,
+    return AnimatedContainer(
+      key: key,
+      duration: const Duration(milliseconds: 500),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(minHeight: 100.0),
+        child: Container(
+          margin: const EdgeInsets.only(bottom: 9, top: 9, left: 20, right: 20),
+          padding: const EdgeInsets.only(left: 28, right: 20, top: 12, bottom: 12),
+          decoration: nMbox,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              //ddsadconst SizedBox(width: 10),
+              //const Spacer(),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: <Widget>[
+                      Text('$day ', style: textStyleTitle),
+                      const SizedBox(width: 2),
+                      Text(
+                          "${horaInicio > 9 ? '' : 0}$horaInicio:"
+                          "${minuteInicio > 9 ? '' : 0}$minuteInicio  - ",
+                          style: textStyleTitle),
+                      Text(
+                          "${horaFin > 9 ? '' : 0}$horaFin:"
+                          "${minuteFin > 9 ? '' : 0}$minuteFin",
+                          style: textStyleTitle)
+                    ],
+                  ),
+                  const SizedBox(height: 3),
+                  Row(
+                    children: [
+                      Text(subTitle, style: textStyleSubTitle(16)),
+                      const SizedBox(width: 5),
+                      Text(label, style: textStyleSubTitle(18)),
+                    ],
+                  ),
+                ],
               ),
-            ),
-          ],
+
+              NMButtonWithState(
+                onClick: () => StoreProvider.of<AppState>(context).dispatch(PressSwitchHorarioAction(uidHorario)),
+                icon: const Icon(
+                  Icons.alarm_off,
+                  color: Colors.red,
+                  size: 28,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

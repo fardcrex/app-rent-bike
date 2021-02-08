@@ -1,4 +1,5 @@
 import 'package:app_rent_bike/app/Widgets/TabSelector/tab_selector.dart';
+import 'package:app_rent_bike/app/widgets/shower_success_or_failure.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
@@ -24,21 +25,23 @@ class HomePage extends StatelessWidget {
         appBar: isPortrait
             ? AppBar(
                 title: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const SizedBox(width: 45),
-                      Text(
-                        titlePage,
-                        //   textAlign: TextAlign.start,
-                        style: GoogleFonts.alegreya(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold,
+                  child: ShowerSuccessOrFailure(builder: (context, snapshot) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const SizedBox(width: 45),
+                        Text(
+                          titlePage,
+                          //   textAlign: TextAlign.start,
+                          style: GoogleFonts.alegreya(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    );
+                  }),
                 ),
                 backgroundColor: Theme.of(context).canvasColor,
                 actions: [
@@ -56,12 +59,7 @@ class HomePage extends StatelessWidget {
           child: body,
         ),
         bottomNavigationBar: const Padding(
-          padding: EdgeInsets.only(
-            bottom: 12,
-            top: 10,
-            left: 20,
-            right: 20,
-          ),
+          padding: EdgeInsets.only(bottom: 12, top: 10, left: 20, right: 20),
           child: TabSelector(),
         ),
         /*  floatingActionButton: FloatingActionButton(

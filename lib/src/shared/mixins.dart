@@ -29,7 +29,7 @@ mixin DateTimeMixin {
     final horarioInit = DateTime(2000, 1, 1, dto.hourInit, dto.minuteInit);
     final horarioFinish = DateTime(2000, 1, 1, dto.hourFinish, dto.minuteFinish);
 
-    if (horarioInit.hour * 60 + horarioInit.minute < (dateTimeGmt5.hour) * 60 + dateTimeGmt5.minute &&
+    if (horarioInit.hour * 60 + horarioInit.minute <= (dateTimeGmt5.hour) * 60 + dateTimeGmt5.minute &&
         horarioFinish.hour * 60 + horarioFinish.minute > dateTimeGmt5.hour * 60 + dateTimeGmt5.minute) {
       isHisTimeVigente = true;
     } else {

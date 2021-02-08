@@ -1,4 +1,6 @@
 import 'package:app_rent_bike/src/Horarios/Domain/horarioDto/horario_dto.dart';
+import 'package:app_rent_bike/src/Horarios/Domain/success_and_failure.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'enums/enums.dart';
@@ -12,6 +14,7 @@ abstract class AppState with _$AppState {
     final bool isLoading,
     final bool isTimeLocal,
     final List<HorarioDto> horarios,
+    final Option<Either<HorarioFailure, HorarioSuccess>> successOrFailureHorarioOption,
     final String uidUser,
     final DateTime dateTimeNow,
   }) = _AppState;
@@ -21,6 +24,7 @@ abstract class AppState with _$AppState {
       isLoading: true,
       horarios: [],
       dateTimeNow: DateTime.now(),
+      successOrFailureHorarioOption: none(),
       uidUser: uidUser ?? '-1',
       isTimeLocal: isTimeLocal ?? true);
 }

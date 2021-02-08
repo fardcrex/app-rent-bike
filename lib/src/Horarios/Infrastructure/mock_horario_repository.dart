@@ -2,7 +2,9 @@ import 'dart:math';
 
 import 'package:app_rent_bike/src/Horarios/Domain/horarioDto/horario_dto.dart';
 import 'package:app_rent_bike/src/Horarios/Domain/interfaces_repository.dart';
+import 'package:app_rent_bike/src/Horarios/Domain/success_and_failure.dart';
 import 'package:app_rent_bike/src/shared/mixins.dart';
+import 'package:dartz/dartz.dart';
 import 'package:rxdart/rxdart.dart';
 
 class MockHorarioRepository with DateTimeMixin implements InterfaceHorarioRepository {
@@ -40,28 +42,36 @@ class MockHorarioRepository with DateTimeMixin implements InterfaceHorarioReposi
         }),
         ConcatStream([
           TimerStream(DateTime.now(), const Duration(seconds: 3)),
-          Stream.periodic(const Duration(milliseconds: 100)).map((event) => DateTime.now()),
+          //Stream.periodic(const Duration(milliseconds: 500)).map((event) => DateTime.now()),
         ]), (a, b) {
       return a;
     });
   }
 
   @override
-  Future<void> selectHorario({String uidHorario, String uidUser}) async {
+  Future<Either<HorarioFailure, HorarioSuccess>> selectHorario({String uidHorario, String uidUser}) async {
+    await Future.delayed(const Duration());
     final list = _data.where((element) => element.uidHorario == uidHorario).toList();
-    if (list.isEmpty) return;
+    if (list.isEmpty) return const Left(HorarioFailure.emptyBikes());
     final data = list.first;
     final userUidList = data.idUsers;
     if (userUidList.contains(uidUser)) {
-      final newList = userUidList.where((user) => user != uidUser).toList();
-      _data = _data.map<HorarioDto>((e) => e.uidHorario == uidHorario ? data.copyWith(idUsers: newList) : e).toList();
-      return;
+      if (Random().nextInt(3).isOdd) {
+        final newList = userUidList.where((user) => user != uidUser).toList();
+        _data = _data.map<HorarioDto>((e) => e.uidHorario == uidHorario ? data.copyWith(idUsers: newList) : e).toList();
+        return const Right(HorarioSuccess.cancelBike());
+      }
+      return const Left(HorarioFailure.errorCancelBike());
     }
-    if (userUidList.length == data.bikesAvailables) return;
+    if (userUidList.length == data.bikesAvailables) return const Left(HorarioFailure.emptyBikes());
+    if (Random().nextInt(3).isEven) {
+      return const Left(HorarioFailure.errorSelectBike());
+    }
     userUidList.add(uidUser);
     final newList = userUidList.toSet();
     _data = _data
         .map<HorarioDto>((e) => e.uidHorario == uidHorario ? data.copyWith(idUsers: newList.toList()) : e)
         .toList();
+    return const Right(HorarioSuccess.selectBike());
   }
 }

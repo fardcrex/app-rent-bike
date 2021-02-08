@@ -19,6 +19,8 @@ class _$AppStateTearOff {
       bool isLoading,
       bool isTimeLocal,
       List<HorarioDto> horarios,
+      Option<Either<HorarioFailure, HorarioSuccess>>
+          successOrFailureHorarioOption,
       String uidUser,
       DateTime dateTimeNow}) {
     return _AppState(
@@ -26,6 +28,7 @@ class _$AppStateTearOff {
       isLoading: isLoading,
       isTimeLocal: isTimeLocal,
       horarios: horarios,
+      successOrFailureHorarioOption: successOrFailureHorarioOption,
       uidUser: uidUser,
       dateTimeNow: dateTimeNow,
     );
@@ -42,6 +45,8 @@ mixin _$AppState {
   bool get isLoading;
   bool get isTimeLocal;
   List<HorarioDto> get horarios;
+  Option<Either<HorarioFailure, HorarioSuccess>>
+      get successOrFailureHorarioOption;
   String get uidUser;
   DateTime get dateTimeNow;
 
@@ -58,6 +63,8 @@ abstract class $AppStateCopyWith<$Res> {
       bool isLoading,
       bool isTimeLocal,
       List<HorarioDto> horarios,
+      Option<Either<HorarioFailure, HorarioSuccess>>
+          successOrFailureHorarioOption,
       String uidUser,
       DateTime dateTimeNow});
 
@@ -78,6 +85,7 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
     Object isLoading = freezed,
     Object isTimeLocal = freezed,
     Object horarios = freezed,
+    Object successOrFailureHorarioOption = freezed,
     Object uidUser = freezed,
     Object dateTimeNow = freezed,
   }) {
@@ -88,6 +96,10 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
           isTimeLocal == freezed ? _value.isTimeLocal : isTimeLocal as bool,
       horarios:
           horarios == freezed ? _value.horarios : horarios as List<HorarioDto>,
+      successOrFailureHorarioOption: successOrFailureHorarioOption == freezed
+          ? _value.successOrFailureHorarioOption
+          : successOrFailureHorarioOption
+              as Option<Either<HorarioFailure, HorarioSuccess>>,
       uidUser: uidUser == freezed ? _value.uidUser : uidUser as String,
       dateTimeNow:
           dateTimeNow == freezed ? _value.dateTimeNow : dateTimeNow as DateTime,
@@ -115,6 +127,8 @@ abstract class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
       bool isLoading,
       bool isTimeLocal,
       List<HorarioDto> horarios,
+      Option<Either<HorarioFailure, HorarioSuccess>>
+          successOrFailureHorarioOption,
       String uidUser,
       DateTime dateTimeNow});
 
@@ -137,6 +151,7 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
     Object isLoading = freezed,
     Object isTimeLocal = freezed,
     Object horarios = freezed,
+    Object successOrFailureHorarioOption = freezed,
     Object uidUser = freezed,
     Object dateTimeNow = freezed,
   }) {
@@ -147,6 +162,10 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
           isTimeLocal == freezed ? _value.isTimeLocal : isTimeLocal as bool,
       horarios:
           horarios == freezed ? _value.horarios : horarios as List<HorarioDto>,
+      successOrFailureHorarioOption: successOrFailureHorarioOption == freezed
+          ? _value.successOrFailureHorarioOption
+          : successOrFailureHorarioOption
+              as Option<Either<HorarioFailure, HorarioSuccess>>,
       uidUser: uidUser == freezed ? _value.uidUser : uidUser as String,
       dateTimeNow:
           dateTimeNow == freezed ? _value.dateTimeNow : dateTimeNow as DateTime,
@@ -161,6 +180,7 @@ class _$_AppState implements _AppState {
       this.isLoading,
       this.isTimeLocal,
       this.horarios,
+      this.successOrFailureHorarioOption,
       this.uidUser,
       this.dateTimeNow});
 
@@ -173,13 +193,16 @@ class _$_AppState implements _AppState {
   @override
   final List<HorarioDto> horarios;
   @override
+  final Option<Either<HorarioFailure, HorarioSuccess>>
+      successOrFailureHorarioOption;
+  @override
   final String uidUser;
   @override
   final DateTime dateTimeNow;
 
   @override
   String toString() {
-    return 'AppState(appMenu: $appMenu, isLoading: $isLoading, isTimeLocal: $isTimeLocal, horarios: $horarios, uidUser: $uidUser, dateTimeNow: $dateTimeNow)';
+    return 'AppState(appMenu: $appMenu, isLoading: $isLoading, isTimeLocal: $isTimeLocal, horarios: $horarios, successOrFailureHorarioOption: $successOrFailureHorarioOption, uidUser: $uidUser, dateTimeNow: $dateTimeNow)';
   }
 
   @override
@@ -198,6 +221,11 @@ class _$_AppState implements _AppState {
             (identical(other.horarios, horarios) ||
                 const DeepCollectionEquality()
                     .equals(other.horarios, horarios)) &&
+            (identical(other.successOrFailureHorarioOption,
+                    successOrFailureHorarioOption) ||
+                const DeepCollectionEquality().equals(
+                    other.successOrFailureHorarioOption,
+                    successOrFailureHorarioOption)) &&
             (identical(other.uidUser, uidUser) ||
                 const DeepCollectionEquality()
                     .equals(other.uidUser, uidUser)) &&
@@ -213,6 +241,7 @@ class _$_AppState implements _AppState {
       const DeepCollectionEquality().hash(isLoading) ^
       const DeepCollectionEquality().hash(isTimeLocal) ^
       const DeepCollectionEquality().hash(horarios) ^
+      const DeepCollectionEquality().hash(successOrFailureHorarioOption) ^
       const DeepCollectionEquality().hash(uidUser) ^
       const DeepCollectionEquality().hash(dateTimeNow);
 
@@ -228,6 +257,8 @@ abstract class _AppState implements AppState {
       bool isLoading,
       bool isTimeLocal,
       List<HorarioDto> horarios,
+      Option<Either<HorarioFailure, HorarioSuccess>>
+          successOrFailureHorarioOption,
       String uidUser,
       DateTime dateTimeNow}) = _$_AppState;
 
@@ -239,6 +270,9 @@ abstract class _AppState implements AppState {
   bool get isTimeLocal;
   @override
   List<HorarioDto> get horarios;
+  @override
+  Option<Either<HorarioFailure, HorarioSuccess>>
+      get successOrFailureHorarioOption;
   @override
   String get uidUser;
   @override

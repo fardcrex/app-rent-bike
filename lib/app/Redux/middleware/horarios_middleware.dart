@@ -3,6 +3,7 @@ import 'package:app_rent_bike/app/Redux/state/app_state.dart';
 import 'package:app_rent_bike/injection.dart';
 import 'package:app_rent_bike/src/Horarios/Application/update_horario.dart';
 import 'package:app_rent_bike/src/Horarios/Domain/interfaces_repository.dart';
+import 'package:dartz/dartz.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
@@ -33,7 +34,11 @@ Function(
 
   return (Store<AppState> store, PressSwitchHorarioAction action, NextDispatcher next) {
     next(action);
-    updateHorario.execute(uidHorario: action.uidHorario, uidUser: store.state.uidUser);
+    next(ShowSuccesOrFailureAction(none()));
+    updateHorario.execute(uidHorario: action.uidHorario, uidUser: store.state.uidUser).then((value) {
+      next(action);
+      next(ShowSuccesOrFailureAction(optionOf(value)));
+    });
     // next(ChangeToNotLoadingAction());
   };
 }

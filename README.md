@@ -1,10 +1,10 @@
 # app_rent_bike
 
-A new Flutter project.
+Mini app como ejercicio con temática de renta de bicicletas.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Este proyecto tiene varios Flavors.
 
 A few resources to get you started if this is your first Flutter project:
 

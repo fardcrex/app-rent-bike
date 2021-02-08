@@ -1,5 +1,6 @@
 import 'package:app_rent_bike/app/Redux/actions/horarios_action.dart';
 import 'package:app_rent_bike/app/Redux/state/app_state.dart';
+import 'package:app_rent_bike/app/widgets/shower_success_or_failure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:shimmer/shimmer.dart';
@@ -15,7 +16,7 @@ extension WidgetOnClick on Widget {
 
 class NMCard extends StatelessWidget {
   final bool active;
-  final bool empty;
+  final bool isEmpty;
   final bool isLoading;
   final String label;
   final String uidHorario;
@@ -28,7 +29,7 @@ class NMCard extends StatelessWidget {
     Key key,
     this.active,
     this.label,
-    this.empty = false,
+    this.isEmpty = false,
     this.horaInicio = 0,
     this.minuteInicio = 0,
     this.horaFin = 0,
@@ -95,15 +96,17 @@ class NMCard extends StatelessWidget {
             AnimatedContainer(
               key: key,
               duration: const Duration(milliseconds: 500),
-              decoration: active
-                  ? nMboxInvertActive
-                  : empty
-                      ? nMboxEmpty
-                      : nMboxInvert,
+              decoration: isLoading
+                  ? nMboxInvert
+                  : active
+                      ? nMboxInvertActive
+                      : isEmpty
+                          ? nMboxEmpty
+                          : nMboxInvert,
               width: 70,
               height: active
                   ? 40
-                  : empty
+                  : isEmpty
                       ? 40
                       : 44,
               child: AnimatedContainer(
@@ -113,7 +116,7 @@ class NMCard extends StatelessWidget {
                 duration: const Duration(milliseconds: 250),
                 margin: active
                     ? const EdgeInsets.fromLTRB(35, 5, 5, 5)
-                    : empty
+                    : isEmpty
                         ? const EdgeInsets.fromLTRB(5, 5, 35, 5)
                         : const EdgeInsets.fromLTRB(6, 7, 35, 7),
                 decoration: nMbtn,
