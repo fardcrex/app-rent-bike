@@ -27,8 +27,8 @@ class ShowerSuccessOrFailure extends StatelessWidget {
                   either.fold(
                     (failure) => failure.map(
                       emptyBikes: (_) => 'No hay bicicletas disponibles',
-                      errorSelectBike: (_) => 'No se pudo rentar',
-                      errorCancelBike: (_) => 'No se pudo cancelar',
+                      errorSelectBike: (_) => 'Problemas de conexión',
+                      errorCancelBike: (_) => 'Problemas de conexión',
                     ),
                     (success) => success.map(
                       selectBike: (_) => 'Bicicleta rentada!',

@@ -39,12 +39,13 @@ class NMCard extends StatelessWidget with StyleAppMixin {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final colorLoading = Colors.grey[100];
     final textStyleTitle = Theme.of(context).textTheme.bodyText2.copyWith(
-          color: isLoading ? fCL : Theme.of(context).focusColor,
+          color: isLoading ? colorLoading : Theme.of(context).focusColor,
           fontSize: 16,
           fontWeight: FontWeight.w500,
         );
-    final textStyleSubTitle = TextStyle(color: isLoading ? fCL : Theme.of(context).primaryColor, fontSize: 16);
+    final textStyleSubTitle = TextStyle(color: isLoading ? colorLoading : Theme.of(context).primaryColor, fontSize: 16);
 
     return ConstrainedBox(
       constraints: const BoxConstraints(minHeight: 100.0),
@@ -86,7 +87,7 @@ class NMCard extends StatelessWidget with StyleAppMixin {
             Text(
               ' $label',
               style: Theme.of(context).textTheme.bodyText2.copyWith(
-                    color: isLoading ? fCL : Theme.of(context).focusColor,
+                    color: isLoading ? colorLoading : Theme.of(context).focusColor,
                     fontSize: 24,
                     fontWeight: FontWeight.w500,
                   ),
