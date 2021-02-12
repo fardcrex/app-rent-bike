@@ -23,30 +23,35 @@ class HorariosEpic implements EpicClass<AppState> {
           .map((list) => BuiltList.of(
                 list.map((e) => HorarioEntity.fromDto(e).fold((l) => l, (r) => r)).whereType<HorarioEntity>().toList(),
               ))
-          .map((list) {
-            final horarioUpdate = store.state.horarios.where((element) => element.isLoading ?? false).toList();
-            if (horarioUpdate.isEmpty) return list;
-            final uidUser = store.state.uidUser;
-            final iudHowChanges = <String>[];
-            for (final dto in list) {
-              for (final dtoUpdate in horarioUpdate) {
-                if (dto.uidHorario == dtoUpdate.uidHorario) {
-                  if ((dto.listUsers.contains(uidUser) && !dtoUpdate.listUsers.contains(uidUser)) ||
-                      (!dto.listUsers.contains(uidUser) && dtoUpdate.listUsers.contains(uidUser))) {
-                  } else {
-                    iudHowChanges.add(dto.uidHorario);
-                  }
-                  continue;
-                }
-              }
-            }
-            return list.rebuild(
-                (list) => list.map((e) => iudHowChanges.contains(e.uidHorario) ? e.copyWith(isLoading: true) : e));
-            //  return list.map((e) => iudHowChanges.contains(e.uidHorario) ? e.copyWith(isLoading: true) : e).toList();
-          })
+          .map((list) => filterHorariosLoading(list, store.state.horarios, store.state.uidUser))
           .map((list) => SetHorariosAction(list)) // 7
           .takeUntil(actions.whereType<CancelStreamHorariosAction>()); // 8
     });
+  }
+
+  BuiltList<HorarioEntity> filterHorariosLoading(
+    BuiltList<HorarioEntity> horariosBefore,
+    BuiltList<HorarioEntity> horariosNew,
+    String uidUser,
+  ) {
+    final horarioUpdate = horariosBefore.where((element) => element.isLoading ?? false).toList();
+    if (horarioUpdate.isEmpty) return horariosNew;
+
+    final iudHowChanges = <String>[];
+    for (final horario in horariosNew) {
+      for (final dtoUpdate in horarioUpdate) {
+        if (horario.uidHorario == dtoUpdate.uidHorario) {
+          if ((horario.listUsers.contains(uidUser) && !dtoUpdate.listUsers.contains(uidUser)) ||
+              (!horario.listUsers.contains(uidUser) && dtoUpdate.listUsers.contains(uidUser))) {
+          } else {
+            iudHowChanges.add(horario.uidHorario);
+          }
+          continue;
+        }
+      }
+    }
+    return horariosNew
+        .rebuild((list) => list.map((e) => iudHowChanges.contains(e.uidHorario) ? e.copyWith(isLoading: true) : e));
   }
 }
 
