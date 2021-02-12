@@ -1,6 +1,6 @@
 import 'package:app_rent_bike/src/Horarios/Domain/interfaces_repository.dart';
 import 'package:app_rent_bike/src/Horarios/Domain/horarioDto/horario_dto.dart';
-import 'package:app_rent_bike/src/Horarios/Domain/success_and_failure.dart';
+import 'package:app_rent_bike/src/Horarios/Domain/success_and_failure/success_and_failure.dart';
 import 'package:app_rent_bike/src/shared/Domain/uuid.dart';
 import 'package:app_rent_bike/src/shared/Domain/mixins.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,6 +14,125 @@ class FirestoreHorarioRepository with DateTimeMixin implements InterfaceHorarioR
 
   DocumentReference get _documentReferenceOfConfig => _firestore.collection('config').doc('init');
   CollectionReference get _collectionReferenceOfHorarios => _firestore.collection('horarios');
+  @override
+  Stream<List<HorarioDto>> getHorariosStream() {
+    final dateNow = dateTimeGmt5;
+    final secondToNextMinute = 60 - dateNow.second;
+    return CombineLatestStream.combine3<List<HorarioDto>, ConfigDto, DateTime, List<HorarioDto>>(
+      _firestore.collection('horarios').orderBy('hourInit').orderBy('minuteInit').snapshots().map((result) {
+        return result.docs
+            .map((doc) {
+              try {
+                return HorarioDto.fromJson(doc.data()).copyWith(uidHorario: doc.id);
+              } catch (e) {
+                return null;
+              }
+            })
+            .whereType<HorarioDto>()
+            .toList();
+      }),
+      _firestore
+          .collection('config')
+          .doc('init')
+          .snapshots()
+          .asyncMap((config) async {
+            if (config.exists) return config;
+            await _setConfigInit(ConfigDto.init());
+          })
+          .whereType<DocumentSnapshot>()
+          .map((config) => ConfigDto.fromJson(config.data()))
+          .onErrorReturn(ConfigDto.init().copyWith(limitMaxBikesAvailables: -1))
+          .scan<ConfigDto>((previous, actual, _) {
+            if (actual.limitMaxBikesAvailables <= 0) {
+              _setConfigInit(previous);
+              return null;
+            } else if (previous?.limitMaxBikesAvailables != actual.limitMaxBikesAvailables && previous != null) {
+              _updateLimitOfBikesToHorarios(actual.limitMaxBikesAvailables);
+              return null;
+            } else if (actual.timestamp == 0) {
+              _cleanUsersToHorarios();
+              _setConfigInit(actual.copyWith(timestamp: dateTimeGmt5.millisecondsSinceEpoch));
+            }
+            return actual;
+          })
+          .whereType<ConfigDto>(),
+      ConcatStream([
+        Stream.value(dateNow),
+        TimerStream(dateNow.add(Duration(seconds: secondToNextMinute)), Duration(seconds: secondToNextMinute)),
+        Stream.periodic(const Duration(minutes: 1)).map((event) => dateTimeGmt5),
+      ]),
+      (list, config, dateTimeNow) {
+        for (final horario in list) {
+          if (isAnoherDayMixin(dateTimeNow.millisecondsSinceEpoch, horario.timestamp ?? 0)) continue;
+          if (isHisTimePassed(horario)) _cleanListUsers(horario);
+        }
+
+        if (!config.isCreateHorarios) {
+          if (list.isEmpty) {
+            _tryCreateHorarios();
+          } else {
+            _setConfigInit(config.copyWith(isCreateHorarios: true));
+          }
+        }
+        return list;
+      },
+    );
+  }
+
+  @override
+  Future<Either<HorarioFailure, HorarioSuccess>> cancelHorario({String uidHorario, String uidUser}) async {
+    Either<HorarioFailure, HorarioSuccess> resp;
+
+    try {
+      final docReference = _collectionReferenceOfHorarios.doc(uidHorario);
+
+      await _firestore.runTransaction((transaction) async {
+        final document = await transaction.get(docReference);
+        if (!document.exists) return;
+
+        final data = HorarioDto.fromJson(document.data());
+        final userUidList = data.idUsers;
+
+        final newList = userUidList.where((user) => user != uidUser).toList();
+        transaction.update(docReference, data.copyWith(idUsers: newList).toJson());
+        resp = const Right(HorarioSuccess.cancelBike());
+        return;
+      });
+      return resp;
+    } catch (e) {
+      return const Left(HorarioFailure.errorCancelBike());
+    }
+  }
+
+  @override
+  Future<Either<HorarioFailure, HorarioSuccess>> selectHorario({String uidHorario, String uidUser}) async {
+    Either<HorarioFailure, HorarioSuccess> resp;
+
+    try {
+      final docReference = _collectionReferenceOfHorarios.doc(uidHorario);
+
+      await _firestore.runTransaction((transaction) async {
+        final document = await transaction.get(docReference);
+        if (!document.exists) return;
+
+        final data = HorarioDto.fromJson(document.data());
+        final userUidList = data.idUsers;
+
+        if (userUidList.length == data.bikesAvailables) {
+          resp = const Left(HorarioFailure.emptyBikes());
+          return;
+        }
+
+        userUidList.add(uidUser);
+        final newList = userUidList.toSet();
+        transaction.update(docReference, data.copyWith(idUsers: newList.toList()).toJson());
+        resp = const Right(HorarioSuccess.selectBike());
+      });
+      return resp;
+    } catch (e) {
+      return const Left(HorarioFailure.errorSelectBike());
+    }
+  }
 
   Future<void> _tryCreateHorarios() async {
     try {
@@ -90,71 +209,6 @@ class FirestoreHorarioRepository with DateTimeMixin implements InterfaceHorarioR
     }
   }
 
-  @override
-  Stream<List<HorarioDto>> getHorariosStream() {
-    final dateNow = dateTimeGmt5;
-    final secondToNextMinute = 60 - dateNow.second;
-    return CombineLatestStream.combine3<List<HorarioDto>, ConfigDto, DateTime, List<HorarioDto>>(
-      _firestore.collection('horarios').orderBy('hourInit').orderBy('minuteInit').snapshots().map((result) {
-        return result.docs
-            .map((doc) {
-              try {
-                return HorarioDto.fromJson(doc.data()).copyWith(uidHorario: doc.id);
-              } catch (e) {
-                return null;
-              }
-            })
-            .whereType<HorarioDto>()
-            .toList();
-      }),
-      _firestore
-          .collection('config')
-          .doc('init')
-          .snapshots()
-          .asyncMap((config) async {
-            if (config.exists) return config;
-            await _setConfigInit(ConfigDto.init());
-          })
-          .whereType<DocumentSnapshot>()
-          .map((config) => ConfigDto.fromJson(config.data()))
-          .onErrorReturn(ConfigDto.init().copyWith(limitMaxBikesAvailables: -1))
-          .scan<ConfigDto>((previous, actual, _) {
-            if (actual.limitMaxBikesAvailables <= 0) {
-              _setConfigInit(previous);
-              return null;
-            } else if (previous?.limitMaxBikesAvailables != actual.limitMaxBikesAvailables && previous != null) {
-              _updateLimitOfBikesToHorarios(actual.limitMaxBikesAvailables);
-              return null;
-            } else if (actual.timestamp == 0) {
-              _cleanUsersToHorarios();
-              _setConfigInit(actual.copyWith(timestamp: dateTimeGmt5.millisecondsSinceEpoch));
-            }
-            return actual;
-          })
-          .whereType<ConfigDto>(),
-      ConcatStream([
-        Stream.value(dateNow),
-        TimerStream(dateNow.add(Duration(seconds: secondToNextMinute)), Duration(seconds: secondToNextMinute)),
-        Stream.periodic(const Duration(minutes: 1)).map((event) => dateTimeGmt5),
-      ]),
-      (list, config, dateTimeNow) {
-        for (final horario in list) {
-          if (isAnoherDayMixin(dateTimeNow.millisecondsSinceEpoch, horario.timestamp ?? 0)) continue;
-          if (isHisTimePassed(horario)) _cleanListUsers(horario);
-        }
-
-        if (!config.isCreateHorarios) {
-          if (list.isEmpty) {
-            _tryCreateHorarios();
-          } else {
-            _setConfigInit(config.copyWith(isCreateHorarios: true));
-          }
-        }
-        return list;
-      },
-    );
-  }
-
   List<HorarioDto> _createListDocsHorarios({int limitBikes}) {
     final dateNow = dateTimeGmt5;
 
@@ -178,42 +232,5 @@ class FirestoreHorarioRepository with DateTimeMixin implements InterfaceHorarioR
           idUsers: []));
     }
     return listHorarios;
-  }
-
-  @override
-  Future<Either<HorarioFailure, HorarioSuccess>> selectHorario({String uidHorario, String uidUser}) async {
-    Either<HorarioFailure, HorarioSuccess> resp;
-    bool isCancelMode = false;
-    try {
-      final docReference = _collectionReferenceOfHorarios.doc(uidHorario);
-
-      await _firestore.runTransaction((transaction) async {
-        final document = await transaction.get(docReference);
-        if (!document.exists) return;
-
-        final data = HorarioDto.fromJson(document.data());
-        final userUidList = data.idUsers;
-
-        if (userUidList.contains(uidUser)) {
-          isCancelMode = true;
-          final newList = userUidList.where((user) => user != uidUser).toList();
-          transaction.update(docReference, data.copyWith(idUsers: newList).toJson());
-          resp = const Right(HorarioSuccess.cancelBike());
-          return;
-        }
-        if (userUidList.length == data.bikesAvailables) {
-          resp = const Left(HorarioFailure.emptyBikes());
-          return;
-        }
-
-        userUidList.add(uidUser);
-        final newList = userUidList.toSet();
-        transaction.update(docReference, data.copyWith(idUsers: newList.toList()).toJson());
-        resp = const Right(HorarioSuccess.selectBike());
-      });
-      return resp;
-    } catch (e) {
-      return isCancelMode ? const Left(HorarioFailure.errorCancelBike()) : const Left(HorarioFailure.errorSelectBike());
-    }
   }
 }

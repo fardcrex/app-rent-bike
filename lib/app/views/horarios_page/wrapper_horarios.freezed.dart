@@ -19,7 +19,7 @@ class _$_ViewModelTearOff {
       bool isLoading,
       String uidUser,
       bool isTimeLocal,
-      List<HorarioDto> horariosList}) {
+      BuiltList<HorarioEntity> horariosList}) {
     return __ViewModel(
       appMenu: appMenu,
       isLoading: isLoading,
@@ -40,7 +40,7 @@ mixin _$_ViewModel {
   bool get isLoading;
   String get uidUser;
   bool get isTimeLocal;
-  List<HorarioDto> get horariosList;
+  BuiltList<HorarioEntity> get horariosList;
 
   @JsonKey(ignore: true)
   _$ViewModelCopyWith<_ViewModel> get copyWith;
@@ -56,7 +56,7 @@ abstract class _$ViewModelCopyWith<$Res> {
       bool isLoading,
       String uidUser,
       bool isTimeLocal,
-      List<HorarioDto> horariosList});
+      BuiltList<HorarioEntity> horariosList});
 
   $AppMenuCopyWith<$Res> get appMenu;
 }
@@ -85,7 +85,7 @@ class __$ViewModelCopyWithImpl<$Res> implements _$ViewModelCopyWith<$Res> {
           isTimeLocal == freezed ? _value.isTimeLocal : isTimeLocal as bool,
       horariosList: horariosList == freezed
           ? _value.horariosList
-          : horariosList as List<HorarioDto>,
+          : horariosList as BuiltList<HorarioEntity>,
     ));
   }
 
@@ -111,7 +111,7 @@ abstract class _$_ViewModelCopyWith<$Res> implements _$ViewModelCopyWith<$Res> {
       bool isLoading,
       String uidUser,
       bool isTimeLocal,
-      List<HorarioDto> horariosList});
+      BuiltList<HorarioEntity> horariosList});
 
   @override
   $AppMenuCopyWith<$Res> get appMenu;
@@ -143,7 +143,7 @@ class __$_ViewModelCopyWithImpl<$Res> extends __$ViewModelCopyWithImpl<$Res>
           isTimeLocal == freezed ? _value.isTimeLocal : isTimeLocal as bool,
       horariosList: horariosList == freezed
           ? _value.horariosList
-          : horariosList as List<HorarioDto>,
+          : horariosList as BuiltList<HorarioEntity>,
     ));
   }
 }
@@ -166,7 +166,7 @@ class _$__ViewModel implements __ViewModel {
   @override
   final bool isTimeLocal;
   @override
-  final List<HorarioDto> horariosList;
+  final BuiltList<HorarioEntity> horariosList;
 
   @override
   String toString() {
@@ -215,7 +215,7 @@ abstract class __ViewModel implements _ViewModel {
       bool isLoading,
       String uidUser,
       bool isTimeLocal,
-      List<HorarioDto> horariosList}) = _$__ViewModel;
+      BuiltList<HorarioEntity> horariosList}) = _$__ViewModel;
 
   @override
   AppMenu get appMenu;
@@ -226,7 +226,7 @@ abstract class __ViewModel implements _ViewModel {
   @override
   bool get isTimeLocal;
   @override
-  List<HorarioDto> get horariosList;
+  BuiltList<HorarioEntity> get horariosList;
   @override
   @JsonKey(ignore: true)
   _$_ViewModelCopyWith<__ViewModel> get copyWith;

@@ -14,7 +14,7 @@ extension WidgetOnClick on Widget {
 }
 
 class NMCardRenta extends StatelessWidget with StyleAppMixin {
-  final String label;
+  final String textTime;
   final String uidHorario;
   final String subTitle;
   final int horaInicio;
@@ -24,7 +24,7 @@ class NMCardRenta extends StatelessWidget with StyleAppMixin {
   final String day;
   const NMCardRenta({
     Key key,
-    this.label,
+    this.textTime,
     this.horaInicio = 0,
     this.minuteInicio = 0,
     this.horaFin = 0,
@@ -78,7 +78,7 @@ class NMCardRenta extends StatelessWidget with StyleAppMixin {
                     children: [
                       Text(subTitle, style: textStyleSubTitle(16)),
                       const SizedBox(width: 5),
-                      Text(label, style: textStyleSubTitle(18)),
+                      Text(textTime, style: textStyleSubTitle(18)),
                     ],
                   ),
                 ],

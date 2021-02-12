@@ -56,14 +56,12 @@ mixin _$HorarioSuccess {
 
 /// @nodoc
 abstract class $HorarioSuccessCopyWith<$Res> {
-  factory $HorarioSuccessCopyWith(
-          HorarioSuccess value, $Res Function(HorarioSuccess) then) =
+  factory $HorarioSuccessCopyWith(HorarioSuccess value, $Res Function(HorarioSuccess) then) =
       _$HorarioSuccessCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$HorarioSuccessCopyWithImpl<$Res>
-    implements $HorarioSuccessCopyWith<$Res> {
+class _$HorarioSuccessCopyWithImpl<$Res> implements $HorarioSuccessCopyWith<$Res> {
   _$HorarioSuccessCopyWithImpl(this._value, this._then);
 
   final HorarioSuccess _value;
@@ -73,14 +71,11 @@ class _$HorarioSuccessCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class $SelectBikeCopyWith<$Res> {
-  factory $SelectBikeCopyWith(
-          SelectBike value, $Res Function(SelectBike) then) =
-      _$SelectBikeCopyWithImpl<$Res>;
+  factory $SelectBikeCopyWith(SelectBike value, $Res Function(SelectBike) then) = _$SelectBikeCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SelectBikeCopyWithImpl<$Res> extends _$HorarioSuccessCopyWithImpl<$Res>
-    implements $SelectBikeCopyWith<$Res> {
+class _$SelectBikeCopyWithImpl<$Res> extends _$HorarioSuccessCopyWithImpl<$Res> implements $SelectBikeCopyWith<$Res> {
   _$SelectBikeCopyWithImpl(SelectBike _value, $Res Function(SelectBike) _then)
       : super(_value, (v) => _then(v as SelectBike));
 
@@ -162,14 +157,11 @@ abstract class SelectBike implements HorarioSuccess {
 
 /// @nodoc
 abstract class $CancelBikeCopyWith<$Res> {
-  factory $CancelBikeCopyWith(
-          CancelBike value, $Res Function(CancelBike) then) =
-      _$CancelBikeCopyWithImpl<$Res>;
+  factory $CancelBikeCopyWith(CancelBike value, $Res Function(CancelBike) then) = _$CancelBikeCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$CancelBikeCopyWithImpl<$Res> extends _$HorarioSuccessCopyWithImpl<$Res>
-    implements $CancelBikeCopyWith<$Res> {
+class _$CancelBikeCopyWithImpl<$Res> extends _$HorarioSuccessCopyWithImpl<$Res> implements $CancelBikeCopyWith<$Res> {
   _$CancelBikeCopyWithImpl(CancelBike _value, $Res Function(CancelBike) _then)
       : super(_value, (v) => _then(v as CancelBike));
 
@@ -305,14 +297,12 @@ mixin _$HorarioFailure {
 
 /// @nodoc
 abstract class $HorarioFailureCopyWith<$Res> {
-  factory $HorarioFailureCopyWith(
-          HorarioFailure value, $Res Function(HorarioFailure) then) =
+  factory $HorarioFailureCopyWith(HorarioFailure value, $Res Function(HorarioFailure) then) =
       _$HorarioFailureCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$HorarioFailureCopyWithImpl<$Res>
-    implements $HorarioFailureCopyWith<$Res> {
+class _$HorarioFailureCopyWithImpl<$Res> implements $HorarioFailureCopyWith<$Res> {
   _$HorarioFailureCopyWithImpl(this._value, this._then);
 
   final HorarioFailure _value;
@@ -322,14 +312,11 @@ class _$HorarioFailureCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class $EmptyBikesCopyWith<$Res> {
-  factory $EmptyBikesCopyWith(
-          EmptyBikes value, $Res Function(EmptyBikes) then) =
-      _$EmptyBikesCopyWithImpl<$Res>;
+  factory $EmptyBikesCopyWith(EmptyBikes value, $Res Function(EmptyBikes) then) = _$EmptyBikesCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$EmptyBikesCopyWithImpl<$Res> extends _$HorarioFailureCopyWithImpl<$Res>
-    implements $EmptyBikesCopyWith<$Res> {
+class _$EmptyBikesCopyWithImpl<$Res> extends _$HorarioFailureCopyWithImpl<$Res> implements $EmptyBikesCopyWith<$Res> {
   _$EmptyBikesCopyWithImpl(EmptyBikes _value, $Res Function(EmptyBikes) _then)
       : super(_value, (v) => _then(v as EmptyBikes));
 
@@ -417,17 +404,14 @@ abstract class EmptyBikes implements HorarioFailure {
 
 /// @nodoc
 abstract class $ErrorSelectBikeCopyWith<$Res> {
-  factory $ErrorSelectBikeCopyWith(
-          ErrorSelectBike value, $Res Function(ErrorSelectBike) then) =
+  factory $ErrorSelectBikeCopyWith(ErrorSelectBike value, $Res Function(ErrorSelectBike) then) =
       _$ErrorSelectBikeCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ErrorSelectBikeCopyWithImpl<$Res>
-    extends _$HorarioFailureCopyWithImpl<$Res>
+class _$ErrorSelectBikeCopyWithImpl<$Res> extends _$HorarioFailureCopyWithImpl<$Res>
     implements $ErrorSelectBikeCopyWith<$Res> {
-  _$ErrorSelectBikeCopyWithImpl(
-      ErrorSelectBike _value, $Res Function(ErrorSelectBike) _then)
+  _$ErrorSelectBikeCopyWithImpl(ErrorSelectBike _value, $Res Function(ErrorSelectBike) _then)
       : super(_value, (v) => _then(v as ErrorSelectBike));
 
   @override
@@ -514,17 +498,14 @@ abstract class ErrorSelectBike implements HorarioFailure {
 
 /// @nodoc
 abstract class $ErrorCancelBikeCopyWith<$Res> {
-  factory $ErrorCancelBikeCopyWith(
-          ErrorCancelBike value, $Res Function(ErrorCancelBike) then) =
+  factory $ErrorCancelBikeCopyWith(ErrorCancelBike value, $Res Function(ErrorCancelBike) then) =
       _$ErrorCancelBikeCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ErrorCancelBikeCopyWithImpl<$Res>
-    extends _$HorarioFailureCopyWithImpl<$Res>
+class _$ErrorCancelBikeCopyWithImpl<$Res> extends _$HorarioFailureCopyWithImpl<$Res>
     implements $ErrorCancelBikeCopyWith<$Res> {
-  _$ErrorCancelBikeCopyWithImpl(
-      ErrorCancelBike _value, $Res Function(ErrorCancelBike) _then)
+  _$ErrorCancelBikeCopyWithImpl(ErrorCancelBike _value, $Res Function(ErrorCancelBike) _then)
       : super(_value, (v) => _then(v as ErrorCancelBike));
 
   @override

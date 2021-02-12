@@ -28,6 +28,10 @@ Future<void> configureInjection(Env environment) async {
 //==================================================
   final sharedInstance = await SharedPreferences.getInstance();
   await environment.when(
+    test: () {
+      getIt.registerSingleton<ServicesAuth>(ServicesAuth.instanceMock());
+      getIt.registerSingleton<InterfaceUserSettingsRepository>(SharedPreferencesSettingsRepository(sharedInstance));
+    },
     dev: () async {
       final android = FlavorConfig.instance.variables[Port.androidPlatform] as String;
       final others = FlavorConfig.instance.variables[Port.anotherPlatform] as String;
@@ -37,10 +41,6 @@ Future<void> configureInjection(Env environment) async {
       final credentialRepository = OwnAuthCredentialRepository(sharedInstance);
       getIt.registerSingleton<ServicesAuth>(await ServicesAuth.instance(credentialRepository));
       getIt.registerSingleton<InterfaceUserSettingsRepository>(credentialRepository);
-    },
-    test: () {
-      getIt.registerSingleton<ServicesAuth>(ServicesAuth.instanceMock());
-      getIt.registerSingleton<InterfaceUserSettingsRepository>(SharedPreferencesSettingsRepository(sharedInstance));
     },
     prod: () async {
       final firebaseAuth = FirebaseAuth.instance;

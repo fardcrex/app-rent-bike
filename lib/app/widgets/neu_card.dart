@@ -17,7 +17,7 @@ class NMCard extends StatelessWidget with StyleAppMixin {
   final bool active;
   final bool isEmpty;
   final bool isLoading;
-  final String label;
+  final String bikesAvailables;
   final String uidHorario;
   final int horaInicio;
   final int minuteInicio;
@@ -27,7 +27,7 @@ class NMCard extends StatelessWidget with StyleAppMixin {
   const NMCard({
     Key key,
     this.active,
-    this.label,
+    this.bikesAvailables,
     this.isEmpty = false,
     this.horaInicio = 0,
     this.minuteInicio = 0,
@@ -39,7 +39,7 @@ class NMCard extends StatelessWidget with StyleAppMixin {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final colorLoading = Colors.grey[100];
+    final colorLoading = Colors.blueGrey[200];
     final textStyleTitle = Theme.of(context).textTheme.bodyText2.copyWith(
           color: isLoading ? colorLoading : Theme.of(context).focusColor,
           fontSize: 16,
@@ -85,7 +85,7 @@ class NMCard extends StatelessWidget with StyleAppMixin {
             ),
             const Spacer(),
             Text(
-              ' $label',
+              ' $bikesAvailables',
               style: Theme.of(context).textTheme.bodyText2.copyWith(
                     color: isLoading ? colorLoading : Theme.of(context).focusColor,
                     fontSize: 24,
