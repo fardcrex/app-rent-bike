@@ -86,6 +86,9 @@ abstract class HorarioEntity implements _$HorarioEntity {
 
   int get minuteFinishValue =>
       minuteFinish.value.fold((l) => l.map(valueIsNegative: (_) => 0, valueExceded: (_) => 59), (r) => r);
+
+  int get totalMinutes => getHourInit() * 60 + minuteInitValue;
+
   bool get isHorarioVigente {
     bool isHisTimeVigente;
 

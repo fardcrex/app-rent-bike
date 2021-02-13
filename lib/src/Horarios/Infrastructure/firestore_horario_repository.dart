@@ -19,7 +19,7 @@ class FirestoreHorarioRepository with DateTimeMixin implements InterfaceHorarioR
     final dateNow = dateTimeGmt5;
     final secondToNextMinute = 60 - dateNow.second;
     return CombineLatestStream.combine3<List<HorarioDto>, ConfigDto, DateTime, List<HorarioDto>>(
-      _firestore.collection('horarios').orderBy('hourInit').orderBy('minuteInit').snapshots().map((result) {
+      _firestore.collection('horarios').orderBy('hourInit').snapshots().map((result) {
         return result.docs
             .map((doc) {
               try {
