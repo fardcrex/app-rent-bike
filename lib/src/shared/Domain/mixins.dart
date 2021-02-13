@@ -1,6 +1,8 @@
 import 'package:app_rent_bike/src/Horarios/Domain/horarioDto/horario_dto.dart';
 
 mixin DateTimeMixin {
+  static const diferenceHourGTM = -5;
+
   bool isAnoherDayMixin(int dateNowInt, int dateSavedInt) {
     final dateNow = DateTime.fromMillisecondsSinceEpoch(dateNowInt).toUtc();
     final dateSaved = DateTime.fromMillisecondsSinceEpoch(dateSavedInt).toUtc();
@@ -38,7 +40,6 @@ mixin DateTimeMixin {
     return isHisTimeVigente;
   }
 
-  static const diferenceHourGTM = -5;
   DateTime get dateTimeGmt5 => DateTime.now().toUtc().add(const Duration(hours: diferenceHourGTM));
   static DateTime get dateTimeGmt_5 => DateTime.now().toUtc().add(const Duration(hours: diferenceHourGTM));
 
