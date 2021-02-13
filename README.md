@@ -10,7 +10,7 @@ Mira **Deployment** para conocer como desplegar el proyecto.
 
 ### Pre-requisitos 📋
 
-_Que cosas necesitas para instalar el software y como instalarlas_
+### Que cosas necesitas para instalar el software y como instalarlas\_
 
 ```
 Tener instalado Flutter
@@ -18,41 +18,55 @@ Tener instalado Flutter
 
 ### Instalación 🔧
 
-_Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutandose_
-
-_instalar dependencias_
+### instalar dependencias
 
 ```
 flutter pub get
 ```
 
-_Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
-
 ## Ejecutando App ⚙️
 
-_Ejecutar con datos mock (no es necesario integrarlo con Firebase)_
+### Ejecutar con datos mock (no es necesario integrarlo con Firebase)
 
 ```
 flutter run --debug --flavor tst -t lib/main_demo.dart
 ```
 
-_para modo realase_
+#### para su version realase con datos mock
 
-Reference-style:
-![alt text][logo]
-[google]: assets/code.png "code"
+```
+flutter run --realase --flavor tst -t lib/main_demo.dart
+```
+
+### Para los servicios con Firebase descomentar linea en 'android\app\build.gradle' y configurar los google-services.json en los folders 'android\app\src\dev' , 'android\app\src\prod' y 'android\app\src\tst'
+
+![alt text](assets/code.png "code")
+
+### Ejecutar en modo desarrollo Local (necesario configurar emulador de firestore y su puerto en main_dev_local.dart)
+
+```
+flutter run --debug --flavor dev -t lib/main_dev_local.dart
+```
+
+### Ejecutar en modo produccion debugz
+
+```
+flutter run --realase --flavor prod -t lib/main_prod.dart
+```
 
 ## Build 📦
 
-_Agrega notas adicionales sobre como hacer deploy_
+### Crear el apk
+
+```
+flutter build apk --flavor prod -t lib/main_prod.dart
+```
 
 ## Construido con 🛠️
 
-_Menciona las herramientas que utilizaste para crear tu proyecto_
-
-- [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
-- [Maven](https://maven.apache.org/) - Manejador de dependencias
-- [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
+- [Redux](http://www.dropwizard.io/1.0.2/docs/) - El manejador de estados usado
+- [pub](https://maven.apache.org/) - Manejador de dependencias
+- [Firebase](https://firebase.google.com/) - Usado como base de datos y authenticacion
 
 ## Contribuyendo 🖇️
 
@@ -60,32 +74,19 @@ Por favor lee el [CONTRIBUTING.md](https://gist.github.com/villanuevand/xxxxxx) 
 
 ## Wiki 📖
 
-Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](https://github.com/tu/proyecto/wiki)
+![alt text](assets/horarios_page.png "code")
+![alt text](assets/rentas_page.png "code")
 
 ## Versionado 📌
 
-Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/tu/proyecto/tags).
+Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/tu/proyecto/tags).
 
 ## Autores ✒️
 
-_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
-
-- **Andrés Villanueva** - _Trabajo Inicial_ - [villanuevand](https://github.com/villanuevand)
-- **Fulanito Detal** - _Documentación_ - [fulanitodetal](#fulanito-de-tal)
+- **Jair Conislla** - [@fardcrex](https://twitter.com/fardcrex)
 
 También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto.
 
-## Licencia 📄
-
-Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
-
 ## Expresiones de Gratitud 🎁
 
-- Comenta a otros sobre este proyecto 📢
-- Invita una cerveza 🍺 o un café ☕ a alguien del equipo.
-- Da las gracias públicamente 🤓.
-- etc.
-
 ---
-
-⌨️ con ❤️ por [Villanuevand](https://github.com/Villanuevand) 😊
