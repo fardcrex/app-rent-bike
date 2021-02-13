@@ -6,15 +6,9 @@ Proyecto de portafolio sobre un mini sistema de renta
 
 _Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
 
-Mira **Deployment** para conocer como desplegar el proyecto.
-
 ### Pre-requisitos 📋
 
-### Que cosas necesitas para instalar el software y como instalarlas\_
-
-```
-Tener instalado Flutter
-```
+#### Tener instalado Flutter
 
 ### Instalación 🔧
 
@@ -68,10 +62,6 @@ flutter build apk --flavor prod -t lib/main_prod.dart
 - [pub](https://maven.apache.org/) - Manejador de dependencias
 - [Firebase](https://firebase.google.com/) - Usado como base de datos y authenticacion
 
-## Contribuyendo 🖇️
-
-Por favor lee el [CONTRIBUTING.md](https://gist.github.com/villanuevand/xxxxxx) para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
-
 ## Wiki 📖
 
 ![alt text](assets/horarios_page.png "code")
@@ -85,7 +75,7 @@ Para todas las versiones disponibles, mira los [tags en este repositorio](https:
 
 - **Jair Conislla** - [@fardcrex](https://twitter.com/fardcrex)
 
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto.
+También puedes mirar la lista de todos los [contribuyentes](https://github.com/fardcrex/app-rent-bike/tags) quíenes han participado en este proyecto.
 
 ## Expresiones de Gratitud 🎁
 
