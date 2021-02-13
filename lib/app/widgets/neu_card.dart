@@ -64,7 +64,7 @@ class NMCard extends StatelessWidget with StyleAppMixin {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Bicicletas  disponibles:', style: textStyleTitle),
+                Text('Ciclistas  disponibles:', style: textStyleTitle),
                 const SizedBox(height: 3),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

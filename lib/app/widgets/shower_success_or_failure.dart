@@ -26,13 +26,13 @@ class ShowerSuccessOrFailure extends StatelessWidget {
             (either) => showToast(
                   either.fold(
                     (failure) => failure.map(
-                      emptyBikes: (_) => 'No hay bicicletas disponibles',
+                      emptyBikes: (_) => 'No hay ciclista disponibles',
                       errorSelectBike: (_) => 'No se puede seleccionar',
                       errorCancelBike: (_) => 'No se puede cancelar',
                     ),
                     (success) => success.map(
-                      selectBike: (_) => 'Bicicleta rentada!',
-                      cancelBike: (_) => 'Cancelación exitosa',
+                      selectBike: (_) => 'Ciclista rentado!',
+                      cancelBike: (_) => 'Ciclista cancelado',
                     ),
                   ),
                   context,

@@ -23,7 +23,7 @@ class HorariosEpic implements EpicClass<AppState> {
           .map((list) => BuiltList.of(
                 list.map((e) => HorarioEntity.fromDto(e).fold((l) => l, (r) => r)).whereType<HorarioEntity>().toList(),
               ))
-          .map((list) => filterHorariosLoading(list, store.state.horarios, store.state.uidUser))
+          .map((list) => filterHorariosLoading(store.state.horarios, list, store.state.uidUser))
           .map((list) => SetHorariosAction(list)) // 7
           .takeUntil(actions.whereType<CancelStreamHorariosAction>()); // 8
     });
