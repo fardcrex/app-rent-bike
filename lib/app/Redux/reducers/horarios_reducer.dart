@@ -1,26 +1,26 @@
 import 'package:app_rent_bike/app/Redux/actions/horarios_action.dart';
-import 'package:app_rent_bike/src/Horarios/Domain/horarioDto/horario_dto.dart';
-import 'package:app_rent_bike/src/Horarios/Domain/success_and_failure.dart';
+import 'package:app_rent_bike/src/Horarios/Domain/horario_entity/horario_entity.dart';
+import 'package:app_rent_bike/src/Horarios/Domain/success_and_failure/success_and_failure.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:redux/redux.dart';
 
-final Reducer<List<HorarioDto>> horariosReducer = combineReducers<List<HorarioDto>>([
-  TypedReducer<List<HorarioDto>, SetHorariosAction>(_showHorariosReducer),
-  TypedReducer<List<HorarioDto>, PressSwitchHorarioAction>(_setLoadingHorarioReducer),
+final Reducer<BuiltList<HorarioEntity>> horariosReducer = combineReducers<BuiltList<HorarioEntity>>([
+  TypedReducer<BuiltList<HorarioEntity>, SetHorariosAction>(_showHorariosReducer),
+  TypedReducer<BuiltList<HorarioEntity>, PressSwitchHorarioAction>(_setLoadingHorarioReducer),
 ]);
 
-List<HorarioDto> _showHorariosReducer(List<HorarioDto> state, SetHorariosAction action) {
-  if (state.isEmpty) return List.unmodifiable(action.listHorarios);
-  return List.unmodifiable(List.generate(
-    state.length,
-    (index) => action.listHorarios[index].copyWith(isLoading: state[index]?.isLoading ?? false),
-  ));
+BuiltList<HorarioEntity> _showHorariosReducer(BuiltList<HorarioEntity> state, SetHorariosAction action) {
+  return action.listHorarios;
 }
 
-List<HorarioDto> _setLoadingHorarioReducer(List<HorarioDto> state, PressSwitchHorarioAction action) {
-  return List.unmodifiable(
-    state.map((dto) => dto.uidHorario == action.uidHorario ? dto.copyWith(isLoading: !dto.isLoading) : dto).toList(),
-  );
+BuiltList<HorarioEntity> _setLoadingHorarioReducer(BuiltList<HorarioEntity> state, PressSwitchHorarioAction action) {
+  /*  return BuiltList.of(
+    state.map((dto) => dto.uidHorario == action.uidHorario ? dto.copyWith(isLoading: !dto.isLoading) : dto),
+  ); */
+
+  return state.rebuild((list) => list.map((horario) =>
+      horario.uidHorario == action.uidHorario ? horario.copyWith(isLoading: !horario.isLoading) : horario));
 }
 
 final successOrFailureReducer = combineReducers<Option<Either<HorarioFailure, HorarioSuccess>>>([

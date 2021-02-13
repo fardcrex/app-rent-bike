@@ -19,14 +19,12 @@ class _$_ViewModelTearOff {
       bool isLoading,
       String uidUser,
       bool isTimeLocal,
-      DateTime dateTimeNow,
-      List<HorarioDto> horariosList}) {
+      BuiltList<HorarioEntity> horariosList}) {
     return __ViewModel(
       appMenu: appMenu,
       isLoading: isLoading,
       uidUser: uidUser,
       isTimeLocal: isTimeLocal,
-      dateTimeNow: dateTimeNow,
       horariosList: horariosList,
     );
   }
@@ -42,8 +40,7 @@ mixin _$_ViewModel {
   bool get isLoading;
   String get uidUser;
   bool get isTimeLocal;
-  DateTime get dateTimeNow;
-  List<HorarioDto> get horariosList;
+  BuiltList<HorarioEntity> get horariosList;
 
   @JsonKey(ignore: true)
   _$ViewModelCopyWith<_ViewModel> get copyWith;
@@ -59,8 +56,7 @@ abstract class _$ViewModelCopyWith<$Res> {
       bool isLoading,
       String uidUser,
       bool isTimeLocal,
-      DateTime dateTimeNow,
-      List<HorarioDto> horariosList});
+      BuiltList<HorarioEntity> horariosList});
 
   $AppMenuCopyWith<$Res> get appMenu;
 }
@@ -79,7 +75,6 @@ class __$ViewModelCopyWithImpl<$Res> implements _$ViewModelCopyWith<$Res> {
     Object isLoading = freezed,
     Object uidUser = freezed,
     Object isTimeLocal = freezed,
-    Object dateTimeNow = freezed,
     Object horariosList = freezed,
   }) {
     return _then(_value.copyWith(
@@ -88,11 +83,9 @@ class __$ViewModelCopyWithImpl<$Res> implements _$ViewModelCopyWith<$Res> {
       uidUser: uidUser == freezed ? _value.uidUser : uidUser as String,
       isTimeLocal:
           isTimeLocal == freezed ? _value.isTimeLocal : isTimeLocal as bool,
-      dateTimeNow:
-          dateTimeNow == freezed ? _value.dateTimeNow : dateTimeNow as DateTime,
       horariosList: horariosList == freezed
           ? _value.horariosList
-          : horariosList as List<HorarioDto>,
+          : horariosList as BuiltList<HorarioEntity>,
     ));
   }
 
@@ -118,8 +111,7 @@ abstract class _$_ViewModelCopyWith<$Res> implements _$ViewModelCopyWith<$Res> {
       bool isLoading,
       String uidUser,
       bool isTimeLocal,
-      DateTime dateTimeNow,
-      List<HorarioDto> horariosList});
+      BuiltList<HorarioEntity> horariosList});
 
   @override
   $AppMenuCopyWith<$Res> get appMenu;
@@ -141,7 +133,6 @@ class __$_ViewModelCopyWithImpl<$Res> extends __$ViewModelCopyWithImpl<$Res>
     Object isLoading = freezed,
     Object uidUser = freezed,
     Object isTimeLocal = freezed,
-    Object dateTimeNow = freezed,
     Object horariosList = freezed,
   }) {
     return _then(__ViewModel(
@@ -150,11 +141,9 @@ class __$_ViewModelCopyWithImpl<$Res> extends __$ViewModelCopyWithImpl<$Res>
       uidUser: uidUser == freezed ? _value.uidUser : uidUser as String,
       isTimeLocal:
           isTimeLocal == freezed ? _value.isTimeLocal : isTimeLocal as bool,
-      dateTimeNow:
-          dateTimeNow == freezed ? _value.dateTimeNow : dateTimeNow as DateTime,
       horariosList: horariosList == freezed
           ? _value.horariosList
-          : horariosList as List<HorarioDto>,
+          : horariosList as BuiltList<HorarioEntity>,
     ));
   }
 }
@@ -166,7 +155,6 @@ class _$__ViewModel implements __ViewModel {
       this.isLoading,
       this.uidUser,
       this.isTimeLocal,
-      this.dateTimeNow,
       this.horariosList});
 
   @override
@@ -178,13 +166,11 @@ class _$__ViewModel implements __ViewModel {
   @override
   final bool isTimeLocal;
   @override
-  final DateTime dateTimeNow;
-  @override
-  final List<HorarioDto> horariosList;
+  final BuiltList<HorarioEntity> horariosList;
 
   @override
   String toString() {
-    return '_ViewModel(appMenu: $appMenu, isLoading: $isLoading, uidUser: $uidUser, isTimeLocal: $isTimeLocal, dateTimeNow: $dateTimeNow, horariosList: $horariosList)';
+    return '_ViewModel(appMenu: $appMenu, isLoading: $isLoading, uidUser: $uidUser, isTimeLocal: $isTimeLocal, horariosList: $horariosList)';
   }
 
   @override
@@ -203,9 +189,6 @@ class _$__ViewModel implements __ViewModel {
             (identical(other.isTimeLocal, isTimeLocal) ||
                 const DeepCollectionEquality()
                     .equals(other.isTimeLocal, isTimeLocal)) &&
-            (identical(other.dateTimeNow, dateTimeNow) ||
-                const DeepCollectionEquality()
-                    .equals(other.dateTimeNow, dateTimeNow)) &&
             (identical(other.horariosList, horariosList) ||
                 const DeepCollectionEquality()
                     .equals(other.horariosList, horariosList)));
@@ -218,7 +201,6 @@ class _$__ViewModel implements __ViewModel {
       const DeepCollectionEquality().hash(isLoading) ^
       const DeepCollectionEquality().hash(uidUser) ^
       const DeepCollectionEquality().hash(isTimeLocal) ^
-      const DeepCollectionEquality().hash(dateTimeNow) ^
       const DeepCollectionEquality().hash(horariosList);
 
   @JsonKey(ignore: true)
@@ -233,8 +215,7 @@ abstract class __ViewModel implements _ViewModel {
       bool isLoading,
       String uidUser,
       bool isTimeLocal,
-      DateTime dateTimeNow,
-      List<HorarioDto> horariosList}) = _$__ViewModel;
+      BuiltList<HorarioEntity> horariosList}) = _$__ViewModel;
 
   @override
   AppMenu get appMenu;
@@ -245,9 +226,7 @@ abstract class __ViewModel implements _ViewModel {
   @override
   bool get isTimeLocal;
   @override
-  DateTime get dateTimeNow;
-  @override
-  List<HorarioDto> get horariosList;
+  BuiltList<HorarioEntity> get horariosList;
   @override
   @JsonKey(ignore: true)
   _$_ViewModelCopyWith<__ViewModel> get copyWith;

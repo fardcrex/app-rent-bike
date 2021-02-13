@@ -9,7 +9,7 @@ extension WidgetOnClick on Widget {
       );
 }
 
-class NMButton extends StatelessWidget {
+class NMButton extends StatelessWidget with StyleAppMixin {
   final bool down;
   final Widget icon;
   final VoidCallback onClick;
@@ -62,6 +62,7 @@ class _NMButtonWithStateState extends State<NMButtonWithState> {
     await Future.delayed(const Duration(milliseconds: 500));
     _duration = 200;
     setState(() => _down = false);
+    await Future.delayed(const Duration(milliseconds: 200));
     return;
   }
 
@@ -70,6 +71,7 @@ class _NMButtonWithStateState extends State<NMButtonWithState> {
     return NMButton(
       down: _down,
       onClick: () async {
+        if (_down) return;
         await _doAnimate();
         widget.onClick();
       },

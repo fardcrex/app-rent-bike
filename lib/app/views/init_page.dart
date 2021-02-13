@@ -33,7 +33,7 @@ class InitPage extends StatelessWidget {
 
         return HomePage(
           body: vm.appMenu.map(
-            horarios: (_) => WrapperHorariosPage(),
+            horarios: (_) => const WrapperHorariosPage(),
             rentas: (_) => WrapperRentasPage(),
             info: (_) => const InfoPage(),
           ),

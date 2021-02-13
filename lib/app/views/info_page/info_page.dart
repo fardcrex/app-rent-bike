@@ -242,7 +242,7 @@ class ListTileNeu extends StatelessWidget {
   }
 }
 
-class CreditCard extends StatelessWidget {
+class CreditCard extends StatelessWidget with StyleAppMixin {
   const CreditCard({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -252,7 +252,7 @@ class CreditCard extends StatelessWidget {
       decoration: nMbox,
       child: Center(
         child: Text(
-          'Mini sistema para la renta de bicicletas en tiempo real con distintos horarios que van desde las 8:00 am hasta las 8:00 pm en GTM-5.',
+          'Mini sistema para la renta de ciclistas en tiempo real con distintos horarios que van desde las 8:00 am hasta las 8:00 pm en GTM-5.',
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.bodyText2.copyWith(
                 color: Theme.of(context).focusColor,

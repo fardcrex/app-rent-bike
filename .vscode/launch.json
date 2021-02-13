@@ -68,7 +68,7 @@
           "name": "Flutter Prod",
           "request": "launch",
           "type": "dart",
-          "flutterMode": "debug",
+          "flutterMode": "release",
           "program": "lib/main_prod.dart",
           "args": [
             "--flavor",

@@ -1,5 +1,5 @@
 import 'package:app_rent_bike/app/Redux/state/app_state.dart';
-import 'package:app_rent_bike/src/Horarios/Domain/success_and_failure.dart';
+import 'package:app_rent_bike/src/Horarios/Domain/success_and_failure/success_and_failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -26,13 +26,13 @@ class ShowerSuccessOrFailure extends StatelessWidget {
             (either) => showToast(
                   either.fold(
                     (failure) => failure.map(
-                      emptyBikes: (_) => 'No hay bicicletas disponibles',
-                      errorSelectBike: (_) => 'No se pudo rentar',
-                      errorCancelBike: (_) => 'No se pudo cancelar',
+                      emptyBikes: (_) => 'No hay ciclista disponibles',
+                      errorSelectBike: (_) => 'No se puede seleccionar',
+                      errorCancelBike: (_) => 'No se puede cancelar',
                     ),
                     (success) => success.map(
-                      selectBike: (_) => 'Bicicleta rentada!',
-                      cancelBike: (_) => 'Cancelación exitosa',
+                      selectBike: (_) => 'Ciclista rentado!',
+                      cancelBike: (_) => 'Ciclista cancelado',
                     ),
                   ),
                   context,

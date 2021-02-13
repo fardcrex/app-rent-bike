@@ -18,7 +18,7 @@ class _$AppStateTearOff {
       {AppMenu appMenu,
       bool isLoading,
       bool isTimeLocal,
-      List<HorarioDto> horarios,
+      BuiltList<HorarioEntity> horarios,
       Option<Either<HorarioFailure, HorarioSuccess>>
           successOrFailureHorarioOption,
       String uidUser,
@@ -44,7 +44,7 @@ mixin _$AppState {
   AppMenu get appMenu;
   bool get isLoading;
   bool get isTimeLocal;
-  List<HorarioDto> get horarios;
+  BuiltList<HorarioEntity> get horarios;
   Option<Either<HorarioFailure, HorarioSuccess>>
       get successOrFailureHorarioOption;
   String get uidUser;
@@ -62,7 +62,7 @@ abstract class $AppStateCopyWith<$Res> {
       {AppMenu appMenu,
       bool isLoading,
       bool isTimeLocal,
-      List<HorarioDto> horarios,
+      BuiltList<HorarioEntity> horarios,
       Option<Either<HorarioFailure, HorarioSuccess>>
           successOrFailureHorarioOption,
       String uidUser,
@@ -94,8 +94,9 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
       isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
       isTimeLocal:
           isTimeLocal == freezed ? _value.isTimeLocal : isTimeLocal as bool,
-      horarios:
-          horarios == freezed ? _value.horarios : horarios as List<HorarioDto>,
+      horarios: horarios == freezed
+          ? _value.horarios
+          : horarios as BuiltList<HorarioEntity>,
       successOrFailureHorarioOption: successOrFailureHorarioOption == freezed
           ? _value.successOrFailureHorarioOption
           : successOrFailureHorarioOption
@@ -126,7 +127,7 @@ abstract class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
       {AppMenu appMenu,
       bool isLoading,
       bool isTimeLocal,
-      List<HorarioDto> horarios,
+      BuiltList<HorarioEntity> horarios,
       Option<Either<HorarioFailure, HorarioSuccess>>
           successOrFailureHorarioOption,
       String uidUser,
@@ -160,8 +161,9 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
       isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
       isTimeLocal:
           isTimeLocal == freezed ? _value.isTimeLocal : isTimeLocal as bool,
-      horarios:
-          horarios == freezed ? _value.horarios : horarios as List<HorarioDto>,
+      horarios: horarios == freezed
+          ? _value.horarios
+          : horarios as BuiltList<HorarioEntity>,
       successOrFailureHorarioOption: successOrFailureHorarioOption == freezed
           ? _value.successOrFailureHorarioOption
           : successOrFailureHorarioOption
@@ -191,7 +193,7 @@ class _$_AppState implements _AppState {
   @override
   final bool isTimeLocal;
   @override
-  final List<HorarioDto> horarios;
+  final BuiltList<HorarioEntity> horarios;
   @override
   final Option<Either<HorarioFailure, HorarioSuccess>>
       successOrFailureHorarioOption;
@@ -256,7 +258,7 @@ abstract class _AppState implements AppState {
       {AppMenu appMenu,
       bool isLoading,
       bool isTimeLocal,
-      List<HorarioDto> horarios,
+      BuiltList<HorarioEntity> horarios,
       Option<Either<HorarioFailure, HorarioSuccess>>
           successOrFailureHorarioOption,
       String uidUser,
@@ -269,7 +271,7 @@ abstract class _AppState implements AppState {
   @override
   bool get isTimeLocal;
   @override
-  List<HorarioDto> get horarios;
+  BuiltList<HorarioEntity> get horarios;
   @override
   Option<Either<HorarioFailure, HorarioSuccess>>
       get successOrFailureHorarioOption;

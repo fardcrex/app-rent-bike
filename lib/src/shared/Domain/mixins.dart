@@ -40,4 +40,9 @@ mixin DateTimeMixin {
 
   static const diferenceHourGTM = -5;
   DateTime get dateTimeGmt5 => DateTime.now().toUtc().add(const Duration(hours: diferenceHourGTM));
+  static DateTime get dateTimeGmt_5 => DateTime.now().toUtc().add(const Duration(hours: diferenceHourGTM));
+
+  static bool isTimeFinishMoreThanTimeInit(HorarioDto horarioDto) {
+    return horarioDto.hourInit * 60 + horarioDto.minuteInit >= horarioDto.hourFinish * 60 + horarioDto.minuteFinish;
+  }
 }

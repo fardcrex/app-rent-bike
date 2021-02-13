@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
                           //   textAlign: TextAlign.start,
                           style: GoogleFonts.alegreya(
                             color: Theme.of(context).primaryColor,
-                            fontSize: 26,
+                            fontSize: 24,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

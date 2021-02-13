@@ -1,6 +1,5 @@
 import 'package:app_rent_bike/app/Redux/actions/horarios_action.dart';
 import 'package:app_rent_bike/app/Redux/state/app_state.dart';
-import 'package:app_rent_bike/app/widgets/shower_success_or_failure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:shimmer/shimmer.dart';
@@ -14,11 +13,11 @@ extension WidgetOnClick on Widget {
       );
 }
 
-class NMCard extends StatelessWidget {
+class NMCard extends StatelessWidget with StyleAppMixin {
   final bool active;
   final bool isEmpty;
   final bool isLoading;
-  final String label;
+  final String bikesAvailables;
   final String uidHorario;
   final int horaInicio;
   final int minuteInicio;
@@ -28,7 +27,7 @@ class NMCard extends StatelessWidget {
   const NMCard({
     Key key,
     this.active,
-    this.label,
+    this.bikesAvailables,
     this.isEmpty = false,
     this.horaInicio = 0,
     this.minuteInicio = 0,
@@ -40,12 +39,13 @@ class NMCard extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final colorLoading = Colors.blueGrey[200];
     final textStyleTitle = Theme.of(context).textTheme.bodyText2.copyWith(
-          color: isLoading ? fCL : Theme.of(context).focusColor,
+          color: isLoading ? colorLoading : Theme.of(context).focusColor,
           fontSize: 16,
           fontWeight: FontWeight.w500,
         );
-    final textStyleSubTitle = TextStyle(color: isLoading ? fCL : Theme.of(context).primaryColor, fontSize: 16);
+    final textStyleSubTitle = TextStyle(color: isLoading ? colorLoading : Theme.of(context).primaryColor, fontSize: 16);
 
     return ConstrainedBox(
       constraints: const BoxConstraints(minHeight: 100.0),
@@ -64,7 +64,7 @@ class NMCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Bicicletas  disponibles:', style: textStyleTitle),
+                Text('Ciclistas  disponibles:', style: textStyleTitle),
                 const SizedBox(height: 3),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -85,9 +85,9 @@ class NMCard extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              ' $label',
+              ' $bikesAvailables',
               style: Theme.of(context).textTheme.bodyText2.copyWith(
-                    color: isLoading ? fCL : Theme.of(context).focusColor,
+                    color: isLoading ? colorLoading : Theme.of(context).focusColor,
                     fontSize: 24,
                     fontWeight: FontWeight.w500,
                   ),
@@ -131,7 +131,7 @@ class NMCard extends StatelessWidget {
   }
 }
 
-class NMCardLoading extends StatelessWidget {
+class NMCardLoading extends StatelessWidget with StyleAppMixin {
   final bool active;
 
   const NMCardLoading({

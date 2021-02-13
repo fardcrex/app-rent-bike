@@ -15,7 +15,7 @@ import '../styles.dart';
 
 part 'switch_time_zone.freezed.dart';
 
-class SwitchTimeZone extends StatelessWidget {
+class SwitchTimeZone extends StatelessWidget with StyleAppMixin {
   const SwitchTimeZone({Key key}) : super(key: key);
 
   @override

@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:app_rent_bike/src/Horarios/Domain/horarioDto/horario_dto.dart';
 import 'package:app_rent_bike/src/Horarios/Domain/interfaces_repository.dart';
-import 'package:app_rent_bike/src/Horarios/Domain/success_and_failure.dart';
-import 'package:app_rent_bike/src/shared/mixins.dart';
+import 'package:app_rent_bike/src/Horarios/Domain/success_and_failure/success_and_failure.dart';
+import 'package:app_rent_bike/src/shared/Domain/mixins.dart';
 import 'package:dartz/dartz.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -25,6 +25,7 @@ class MockHorarioRepository with DateTimeMixin implements InterfaceHorarioReposi
             hourInit: 8 + timeHour,
             hourFinish: i.isEven ? 8 + timeHour : 9 + timeHour,
             minuteInit: i.isEven ? 0 : 30,
+            isLoading: false,
             minuteFinish: i.isEven ? 30 : 0,
             idUsers: List.generate(Random().nextInt(8), (index) => '${index + 1}'));
       }).toList();
@@ -42,31 +43,45 @@ class MockHorarioRepository with DateTimeMixin implements InterfaceHorarioReposi
         }),
         ConcatStream([
           TimerStream(DateTime.now(), const Duration(seconds: 3)),
-          //Stream.periodic(const Duration(milliseconds: 500)).map((event) => DateTime.now()),
+          Stream.periodic(const Duration(milliseconds: 50)).map((event) => DateTime.now()),
         ]), (a, b) {
       return a;
     });
   }
 
   @override
-  Future<Either<HorarioFailure, HorarioSuccess>> selectHorario({String uidHorario, String uidUser}) async {
-    await Future.delayed(const Duration());
+  Future<Either<HorarioFailure, HorarioSuccess>> cancelHorario({String uidHorario, String uidUser}) async {
+    await Future.delayed(Duration(milliseconds: Random().nextInt(500) + 100));
     final list = _data.where((element) => element.uidHorario == uidHorario).toList();
     if (list.isEmpty) return const Left(HorarioFailure.emptyBikes());
+
     final data = list.first;
     final userUidList = data.idUsers;
-    if (userUidList.contains(uidUser)) {
-      if (Random().nextInt(3).isOdd) {
-        final newList = userUidList.where((user) => user != uidUser).toList();
-        _data = _data.map<HorarioDto>((e) => e.uidHorario == uidHorario ? data.copyWith(idUsers: newList) : e).toList();
-        return const Right(HorarioSuccess.cancelBike());
-      }
-      return const Left(HorarioFailure.errorCancelBike());
+
+    //Simulamos que uno de cada 5 peticion fallará
+    if (Random().nextInt(5) > 1) {
+      final newList = userUidList.where((user) => user != uidUser).toList();
+      _data = _data.map<HorarioDto>((e) => e.uidHorario == uidHorario ? data.copyWith(idUsers: newList) : e).toList();
+      return const Right(HorarioSuccess.cancelBike());
     }
+    return const Left(HorarioFailure.errorCancelBike());
+  }
+
+  @override
+  Future<Either<HorarioFailure, HorarioSuccess>> selectHorario({String uidHorario, String uidUser}) async {
+    await Future.delayed(Duration(milliseconds: Random().nextInt(500) + 100));
+    final list = _data.where((element) => element.uidHorario == uidHorario).toList();
+    if (list.isEmpty) return const Left(HorarioFailure.emptyBikes());
+
+    final data = list.first;
+    final userUidList = data.idUsers;
+
     if (userUidList.length == data.bikesAvailables) return const Left(HorarioFailure.emptyBikes());
-    if (Random().nextInt(3).isEven) {
+
+    if (Random().nextInt(5) == 1) {
       return const Left(HorarioFailure.errorSelectBike());
     }
+
     userUidList.add(uidUser);
     final newList = userUidList.toSet();
     _data = _data

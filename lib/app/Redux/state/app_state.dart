@@ -1,5 +1,6 @@
-import 'package:app_rent_bike/src/Horarios/Domain/horarioDto/horario_dto.dart';
-import 'package:app_rent_bike/src/Horarios/Domain/success_and_failure.dart';
+import 'package:app_rent_bike/src/Horarios/Domain/horario_entity/horario_entity.dart';
+import 'package:app_rent_bike/src/Horarios/Domain/success_and_failure/success_and_failure.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -13,7 +14,7 @@ abstract class AppState with _$AppState {
     final AppMenu appMenu,
     final bool isLoading,
     final bool isTimeLocal,
-    final List<HorarioDto> horarios,
+    final BuiltList<HorarioEntity> horarios,
     final Option<Either<HorarioFailure, HorarioSuccess>> successOrFailureHorarioOption,
     final String uidUser,
     final DateTime dateTimeNow,
@@ -22,7 +23,7 @@ abstract class AppState with _$AppState {
   factory AppState.initial({AppMenu appMenu, bool isTimeLocal, String uidUser}) => AppState(
       appMenu: appMenu ?? const AppMenu.horarios(),
       isLoading: true,
-      horarios: [],
+      horarios: <HorarioEntity>[].build(),
       dateTimeNow: DateTime.now(),
       successOrFailureHorarioOption: none(),
       uidUser: uidUser ?? '-1',
