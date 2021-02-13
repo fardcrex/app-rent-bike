@@ -19,8 +19,8 @@ class ServicesAuth {
     }
     final resp = await repositoryAuth.signInAnonymous();
     return resp.fold(
-      (l) => ServicesAuth._(Uuid().generateV4()),
-      (r) => ServicesAuth._(repositoryAuth.uidUser),
+      (error) => ServicesAuth._(Uuid().generateV4()),
+      (success) => ServicesAuth._(repositoryAuth.uidUser),
     );
   }
 

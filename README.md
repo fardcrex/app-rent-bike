@@ -48,7 +48,7 @@ flutter run --realase --flavor tst -t lib/main_demo.dart
 flutter run --debug --flavor dev -t lib/main_dev_local.dart
 ```
 
-### Ejecutar en modo produccion debugz
+### Ejecutar en modo produccion
 
 ```
 flutter run --realase --flavor prod -t lib/main_prod.dart

@@ -23,8 +23,8 @@ Widget getApp({@required String titleApp}) {
     store: Store<AppState>(
       appReducer,
       initialState: AppState.initial(
-        appMenu: fromSettings.getAppMenu(),
-        isTimeLocal: fromSettings.getIfIsLocalTime(),
+        appMenu: fromSettings.appMenu,
+        isTimeLocal: fromSettings.isLocalTime,
       ),
       middleware: [...createStoreTodosMiddleware(), EpicMiddleware(getEpicMiddlewares())],
     ),

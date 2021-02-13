@@ -5,6 +5,6 @@ abstract class InterfaceUserSettingsRepository {
 
   void saveLocalTimeSetting({bool isLocalTime = false});
 
-  AppMenu getAppMenu();
-  bool getIfIsLocalTime();
+  AppMenu get appMenu;
+  bool get isLocalTime;
 }

@@ -22,6 +22,7 @@ class FirebaseAuthCredentialRepository implements InterfaceReadCredentialsReposi
     }
   }
 
+//Usamos el id del device y no el uid proporcionado por firebase en este caso
   @override
   Future<Either<AuthFailure, Unit>> signInAnonymous() async {
     try {

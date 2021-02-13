@@ -20,8 +20,8 @@ class SharedPreferencesSettingsRepository implements InterfaceUserSettingsReposi
   }
 
   @override
-  AppMenu getAppMenu() => AppMenu.fromTypeInt(_sharedPreferences.getInt(keyAppMenu));
+  AppMenu get appMenu => AppMenu.fromTypeInt(_sharedPreferences.getInt(keyAppMenu));
 
   @override
-  bool getIfIsLocalTime() => _sharedPreferences.getBool(keyLocalTime);
+  bool get isLocalTime => _sharedPreferences.getBool(keyLocalTime);
 }
