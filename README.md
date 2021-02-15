@@ -2,6 +2,9 @@
 
 Proyecto de portafolio sobre un mini sistema de renta
 
+![alt text](assets/horarios_page.png "code")
+![alt text](assets/rentas_page.png "code")
+
 ## Comenzando 🚀
 
 _Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
@@ -61,11 +64,6 @@ flutter build apk --flavor prod -t lib/main_prod.dart
 - [Redux](http://www.dropwizard.io/1.0.2/docs/) - El manejador de estados usado
 - [pub](https://maven.apache.org/) - Manejador de dependencias
 - [Firebase](https://firebase.google.com/) - Usado como base de datos y authenticacion
-
-## Wiki 📖
-
-![alt text](assets/horarios_page.png "code")
-![alt text](assets/rentas_page.png "code")
 
 ## Versionado 📌
 
