@@ -38,7 +38,7 @@ abstract class HorarioEntity implements _$HorarioEntity {
       uidHorario: horarioDto.uidHorario,
       timestamp: horarioDto.timestamp,
       textTimer: '',
-      isLoading: horarioDto.isLoading ?? false,
+      isLoading: false,
       limitBikesAvailables: LimitBikesAvailables(horarioDto.bikesAvailables),
     ));
   }

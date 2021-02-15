@@ -25,7 +25,6 @@ class MockHorarioRepository with DateTimeMixin implements InterfaceHorarioReposi
             hourInit: 8 + timeHour,
             hourFinish: i.isEven ? 8 + timeHour : 9 + timeHour,
             minuteInit: i.isEven ? 0 : 30,
-            isLoading: false,
             minuteFinish: i.isEven ? 30 : 0,
             idUsers: List.generate(Random().nextInt(8), (index) => '${index + 1}'));
       }).toList();

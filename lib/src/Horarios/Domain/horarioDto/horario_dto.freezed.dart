@@ -22,7 +22,6 @@ class _$HorarioDtoTearOff {
       int minuteInit,
       int hourFinish,
       int minuteFinish,
-      bool isLoading = false,
       @JsonKey(name: JsonKeyHorario.timestamp) int timestamp,
       @JsonKey(name: JsonKeyHorario.idUsers) List<String> idUsers,
       @JsonKey(name: JsonKeyHorario.uidHorario) String uidHorario,
@@ -32,7 +31,6 @@ class _$HorarioDtoTearOff {
       minuteInit: minuteInit,
       hourFinish: hourFinish,
       minuteFinish: minuteFinish,
-      isLoading: isLoading,
       timestamp: timestamp,
       idUsers: idUsers,
       uidHorario: uidHorario,
@@ -56,7 +54,6 @@ mixin _$HorarioDto {
   int get minuteInit;
   int get hourFinish;
   int get minuteFinish;
-  bool get isLoading;
   @JsonKey(name: JsonKeyHorario.timestamp)
   int get timestamp;
   @JsonKey(name: JsonKeyHorario.idUsers)
@@ -81,7 +78,6 @@ abstract class $HorarioDtoCopyWith<$Res> {
       int minuteInit,
       int hourFinish,
       int minuteFinish,
-      bool isLoading,
       @JsonKey(name: JsonKeyHorario.timestamp) int timestamp,
       @JsonKey(name: JsonKeyHorario.idUsers) List<String> idUsers,
       @JsonKey(name: JsonKeyHorario.uidHorario) String uidHorario,
@@ -102,7 +98,6 @@ class _$HorarioDtoCopyWithImpl<$Res> implements $HorarioDtoCopyWith<$Res> {
     Object minuteInit = freezed,
     Object hourFinish = freezed,
     Object minuteFinish = freezed,
-    Object isLoading = freezed,
     Object timestamp = freezed,
     Object idUsers = freezed,
     Object uidHorario = freezed,
@@ -114,7 +109,6 @@ class _$HorarioDtoCopyWithImpl<$Res> implements $HorarioDtoCopyWith<$Res> {
       hourFinish: hourFinish == freezed ? _value.hourFinish : hourFinish as int,
       minuteFinish:
           minuteFinish == freezed ? _value.minuteFinish : minuteFinish as int,
-      isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
       timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
       idUsers: idUsers == freezed ? _value.idUsers : idUsers as List<String>,
       uidHorario:
@@ -137,7 +131,6 @@ abstract class _$HorarioDtoCopyWith<$Res> implements $HorarioDtoCopyWith<$Res> {
       int minuteInit,
       int hourFinish,
       int minuteFinish,
-      bool isLoading,
       @JsonKey(name: JsonKeyHorario.timestamp) int timestamp,
       @JsonKey(name: JsonKeyHorario.idUsers) List<String> idUsers,
       @JsonKey(name: JsonKeyHorario.uidHorario) String uidHorario,
@@ -160,7 +153,6 @@ class __$HorarioDtoCopyWithImpl<$Res> extends _$HorarioDtoCopyWithImpl<$Res>
     Object minuteInit = freezed,
     Object hourFinish = freezed,
     Object minuteFinish = freezed,
-    Object isLoading = freezed,
     Object timestamp = freezed,
     Object idUsers = freezed,
     Object uidHorario = freezed,
@@ -172,7 +164,6 @@ class __$HorarioDtoCopyWithImpl<$Res> extends _$HorarioDtoCopyWithImpl<$Res>
       hourFinish: hourFinish == freezed ? _value.hourFinish : hourFinish as int,
       minuteFinish:
           minuteFinish == freezed ? _value.minuteFinish : minuteFinish as int,
-      isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
       timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
       idUsers: idUsers == freezed ? _value.idUsers : idUsers as List<String>,
       uidHorario:
@@ -193,12 +184,10 @@ class _$_HorarioDto implements _HorarioDto {
       this.minuteInit,
       this.hourFinish,
       this.minuteFinish,
-      this.isLoading = false,
       @JsonKey(name: JsonKeyHorario.timestamp) this.timestamp,
       @JsonKey(name: JsonKeyHorario.idUsers) this.idUsers,
       @JsonKey(name: JsonKeyHorario.uidHorario) this.uidHorario,
-      @JsonKey(name: JsonKeyHorario.bikesAvailables) this.bikesAvailables})
-      : assert(isLoading != null);
+      @JsonKey(name: JsonKeyHorario.bikesAvailables) this.bikesAvailables});
 
   factory _$_HorarioDto.fromJson(Map<String, dynamic> json) =>
       _$_$_HorarioDtoFromJson(json);
@@ -211,9 +200,6 @@ class _$_HorarioDto implements _HorarioDto {
   final int hourFinish;
   @override
   final int minuteFinish;
-  @JsonKey(defaultValue: false)
-  @override
-  final bool isLoading;
   @override
   @JsonKey(name: JsonKeyHorario.timestamp)
   final int timestamp;
@@ -229,7 +215,7 @@ class _$_HorarioDto implements _HorarioDto {
 
   @override
   String toString() {
-    return 'HorarioDto(hourInit: $hourInit, minuteInit: $minuteInit, hourFinish: $hourFinish, minuteFinish: $minuteFinish, isLoading: $isLoading, timestamp: $timestamp, idUsers: $idUsers, uidHorario: $uidHorario, bikesAvailables: $bikesAvailables)';
+    return 'HorarioDto(hourInit: $hourInit, minuteInit: $minuteInit, hourFinish: $hourFinish, minuteFinish: $minuteFinish, timestamp: $timestamp, idUsers: $idUsers, uidHorario: $uidHorario, bikesAvailables: $bikesAvailables)';
   }
 
   @override
@@ -248,9 +234,6 @@ class _$_HorarioDto implements _HorarioDto {
             (identical(other.minuteFinish, minuteFinish) ||
                 const DeepCollectionEquality()
                     .equals(other.minuteFinish, minuteFinish)) &&
-            (identical(other.isLoading, isLoading) ||
-                const DeepCollectionEquality()
-                    .equals(other.isLoading, isLoading)) &&
             (identical(other.timestamp, timestamp) ||
                 const DeepCollectionEquality()
                     .equals(other.timestamp, timestamp)) &&
@@ -272,7 +255,6 @@ class _$_HorarioDto implements _HorarioDto {
       const DeepCollectionEquality().hash(minuteInit) ^
       const DeepCollectionEquality().hash(hourFinish) ^
       const DeepCollectionEquality().hash(minuteFinish) ^
-      const DeepCollectionEquality().hash(isLoading) ^
       const DeepCollectionEquality().hash(timestamp) ^
       const DeepCollectionEquality().hash(idUsers) ^
       const DeepCollectionEquality().hash(uidHorario) ^
@@ -295,7 +277,6 @@ abstract class _HorarioDto implements HorarioDto {
           int minuteInit,
           int hourFinish,
           int minuteFinish,
-          bool isLoading,
           @JsonKey(name: JsonKeyHorario.timestamp) int timestamp,
           @JsonKey(name: JsonKeyHorario.idUsers) List<String> idUsers,
           @JsonKey(name: JsonKeyHorario.uidHorario) String uidHorario,
@@ -313,8 +294,6 @@ abstract class _HorarioDto implements HorarioDto {
   int get hourFinish;
   @override
   int get minuteFinish;
-  @override
-  bool get isLoading;
   @override
   @JsonKey(name: JsonKeyHorario.timestamp)
   int get timestamp;

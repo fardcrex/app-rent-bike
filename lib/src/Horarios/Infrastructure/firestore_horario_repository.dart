@@ -201,8 +201,9 @@ class FirestoreHorarioRepository with DateTimeMixin implements InterfaceHorarioR
     try {
       await _collectionReferenceOfHorarios.doc(horario.uidHorario).update({
         JsonKeyHorario.idUsers: [],
-        JsonKeyHorario.timestamp:
-            DateTime.fromMillisecondsSinceEpoch(horario.timestamp).add(const Duration(days: 1)).millisecondsSinceEpoch,
+        JsonKeyHorario.timestamp: DateTime.fromMillisecondsSinceEpoch(
+          horario.timestamp,
+        ).add(const Duration(days: 1)).millisecondsSinceEpoch,
       });
     } catch (e) {
       return;

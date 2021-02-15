@@ -16,7 +16,6 @@ abstract class HorarioDto with _$HorarioDto {
     int minuteInit,
     int hourFinish,
     int minuteFinish,
-    @Default(false) bool isLoading,
     @JsonKey(name: JsonKeyHorario.timestamp) int timestamp,
     @JsonKey(name: JsonKeyHorario.idUsers) List<String> idUsers,
     @JsonKey(name: JsonKeyHorario.uidHorario) String uidHorario,
